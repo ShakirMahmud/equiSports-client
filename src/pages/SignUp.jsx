@@ -1,14 +1,72 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
+
 
 const SignUp = () => {
 
     const [isClicked, setIsClicked] = useState(true);
+    const [error, setError] = useState('');
+
+    const { createNewUser, updateUserProfile, signInWithGoogle, setUser } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const handleSignUp = (e) => {
         e.preventDefault();
+        const form = new FormData(e.target);
+        const name = form.get('name');
+        const photo = form.get('photo');
+        const email = form.get('email');
+        const password = form.get('password');
+
+        createNewUser(email, password)
+            .then(res => {
+                setUser(res.user);
+                console.log('User created successfully at firebase', res.user);
+
+                // create user to db
+                const newUser = { name, photo, email };
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(newUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            console.log('User created successfully at db');
+                        }
+                    })
+                updateUserProfile({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        Swal.fire({
+                            title: 'Sign-Up Successful!',
+                            text: 'You have successfully signed up. You will be redirected shortly, or click OK to proceed immediately.',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                            timer: 3000,
+                            timerProgressBar: true,
+                        }).then((result) => {
+                            if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+                                navigate('/');
+                            }
+                        })
+                    })
+                    .catch(err => {
+                        console.error(err.code);
+                        setError('Failed to update profile.');
+                    })
+            })
+            .catch(err => {
+                console.error(err.code);
+                setError('Failed to sign up.');
+            })
     }
 
     const handleSignUpWithGoogle = () => {
@@ -47,6 +105,7 @@ const SignUp = () => {
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>
                     </div>
+                    {error && <p className="text-red-600 text-center">{error}</p>}
                     <div className="form-control mt-6">
                         <button type='submit' className="btn btn-primary bg-btn_bg rounded-xl text-white">Sign Up</button>
                     </div>
