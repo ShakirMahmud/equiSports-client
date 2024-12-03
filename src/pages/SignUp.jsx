@@ -10,10 +10,40 @@ const SignUp = () => {
 
     const [isClicked, setIsClicked] = useState(true);
     const [error, setError] = useState('');
-
     const { createNewUser, updateUserProfile, signInWithGoogle, setUser } = useContext(AuthContext);
 
     const navigate = useNavigate();
+
+    const sweetAlert  = () => {
+        Swal.fire({
+            title: 'Sign-Up Successful!',
+            text: 'You have successfully signed up. You will be redirected shortly, or click OK to proceed immediately.',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            timer: 3000,
+            timerProgressBar: true,
+        }).then((result) => {
+            if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+                navigate('/');
+            }
+        })
+    }
+
+    const postToDB = (newUser) => {
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newUser)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    console.log('User created successfully at db');
+                }
+            })
+    }
 
     const handleSignUp = (e) => {
         e.preventDefault();
@@ -30,33 +60,11 @@ const SignUp = () => {
 
                 // create user to db
                 const newUser = { name, photo, email };
-                fetch('http://localhost:5000/users', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(newUser)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.insertedId) {
-                            console.log('User created successfully at db');
-                        }
-                    })
+                postToDB(newUser);
+                
                 updateUserProfile({ displayName: name, photoURL: photo })
                     .then(() => {
-                        Swal.fire({
-                            title: 'Sign-Up Successful!',
-                            text: 'You have successfully signed up. You will be redirected shortly, or click OK to proceed immediately.',
-                            icon: 'success',
-                            confirmButtonText: 'OK',
-                            timer: 3000,
-                            timerProgressBar: true,
-                        }).then((result) => {
-                            if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
-                                navigate('/');
-                            }
-                        })
+                        sweetAlert();
                     })
                     .catch(err => {
                         console.error(err.code);
@@ -70,7 +78,21 @@ const SignUp = () => {
     }
 
     const handleSignUpWithGoogle = () => {
+        signInWithGoogle()
+            .then(res => {
+                setUser(res.user)
+                console.log('User signed up with google successfully at firebase', res.user);
 
+                // create user to db
+                const newUser = { name: res.user.displayName, photo: res.user.photoURL, email: res.user.email };
+                postToDB(newUser);
+
+                sweetAlert();
+            })
+            .catch(err => {
+                console.error(err.code);
+                setError('Failed to sign up with Google.');
+            })
     }
 
     return (
