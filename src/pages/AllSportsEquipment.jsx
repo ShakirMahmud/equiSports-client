@@ -1,14 +1,13 @@
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
-import { useLoaderData } from 'react-router-dom';
-import AllSportsEquipmentTable from '../components/AllSportsEquipmentTable';
-import { FaDeleteLeft } from 'react-icons/fa6';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2";
 
 const AllSportsEquipment = () => {
     const loadedProducts = useLoaderData() || [];
     const [products, setProducts] = useState(loadedProducts);
+    const navigate = useNavigate();
 
     const handleDelete = id => {
         Swal.fire({
@@ -64,7 +63,7 @@ const AllSportsEquipment = () => {
                         </thead>
                         <tbody>
                             {
-                                products.map(product => <tr>
+                                products.map(product => <tr key={product._id}>
                                     <td>
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
@@ -87,7 +86,7 @@ const AllSportsEquipment = () => {
                                     </td>
                                     <td>{product.price}$</td>
                                     <th>
-                                        <button className="btn btn-ghost btn-xs">details</button>
+                                        <button onClick={() => navigate(`/allSportsEquipment/${product._id}`)} className="btn btn-ghost btn-xs">View details</button>
                                         <button onClick={() => handleDelete(product._id)}><MdOutlineDeleteOutline /></button>
                                     </th>
                                 </tr>)
