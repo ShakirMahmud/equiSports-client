@@ -50,7 +50,8 @@ export const router = createBrowserRouter([
         path: '/myEquipmentList',
         element: <PrivateRoute>
             <MyEquipmentList/>
-        </PrivateRoute>
+        </PrivateRoute>,
+        loader: () => fetch('http://localhost:5000/products')
     },
     
     {
