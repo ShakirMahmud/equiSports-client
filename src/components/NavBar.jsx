@@ -21,7 +21,7 @@ const NavBar = () => {
 
     return (
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-white border-2">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -46,10 +46,10 @@ const NavBar = () => {
                             }
                         </ul>
                     </div>
-                    <NavLink to='/' className="btn btn-ghost text-xl">EquiSports</NavLink>
+                    <Link to='/' className="btn btn-ghost text-xl">EquiSports</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className=" font-bold menu-horizontal px-1">
                             {
                                 links
                             }
@@ -65,7 +65,10 @@ const NavBar = () => {
                                 <Link onClick={logOut} className='btn btn-neutral bg-btn_bg rounded-xl'>Logout</Link>
                             </div>
                             :
-                            <Link to='/auth/signIn' className='btn btn-neutral bg-btn_bg rounded-xl'>Login</Link>
+                            <div className='flex gap-3'>
+                                <Link to='/auth/signIn' className='btn btn-neutral bg-btn_bg rounded-xl'>Sign In</Link>
+                                <Link to='/auth/signup' className='btn btn-neutral bg-btn_bg rounded-xl'>Sign Up</Link>
+                            </div>
                     }
                 </div>
             </div>
