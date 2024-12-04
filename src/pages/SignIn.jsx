@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
 
 const SignIn = () => {
     const [isClicked, setIsClicked] = useState(true);
     const navigate = useNavigate();
+    const location = useLocation();
 
 
     const { userSignIn, setUser, signInWithGoogle } = useContext(AuthContext);

@@ -1,10 +1,22 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../provider/AuthProvider';
 
 const NavBar = () => {
+    const navigate = useNavigate();
+    const { user, logOut } = useContext(AuthContext);
 
-    const links = <div>
+    const links = <div className='flex flex-col lg:flex-row gap-3'>
         <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/allSportsEquipment'>All Sports Equipment</NavLink></li>
+        {
+            user?.email && 
+            <li><NavLink to='/addEquipment'>Add Equipment</NavLink></li>
+        }
+        {
+            user?.email && 
+            <li><NavLink to='/myEquipmentList'>My Equipment List</NavLink></li>
+        }
     </div>
 
     return (
@@ -44,7 +56,17 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <NavLink to='/auth/signIn' className="btn">Login</NavLink>
+                {
+                        user && user?.email ?
+                            <div className='flex gap-3 items-center justify-center'>
+                                <div className='w-12 h-12 bg-card_bg rounded-full flex justify-center items-center '>
+                                    <img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" title={user?.displayName} />
+                                </div>
+                                <Link onClick={logOut} className='btn btn-neutral bg-btn_bg rounded-xl'>Logout</Link>
+                            </div>
+                            :
+                            <Link to='/auth/signIn' className='btn btn-neutral bg-btn_bg rounded-xl'>Login</Link>
+                    }
                 </div>
             </div>
         </div>

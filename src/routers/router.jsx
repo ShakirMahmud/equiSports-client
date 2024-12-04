@@ -3,6 +3,10 @@ import HomeLayout from "../layouts/HomeLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import AllSportsEquipment from "../pages/AllSportsEquipment";
+import PrivateRoute from "./PrivateRoute";
+import AddEquipment from "../pages/AddEquipment";
+import MyEquipmentList from "../pages/MyEquipmentList";
 
 export const router = createBrowserRouter([
     {
@@ -22,5 +26,26 @@ export const router = createBrowserRouter([
                 element: <SignUp/>,
             }
         ]
+    },
+    {
+        path: '/allSportsEquipment',
+        element: <AllSportsEquipment/>
+    },
+    {
+        path: '/addEquipment',
+        element: <PrivateRoute>
+            <AddEquipment/>
+        </PrivateRoute>
+    },
+    {
+        path: '/myEquipmentList',
+        element: <PrivateRoute>
+            <MyEquipmentList/>
+        </PrivateRoute>
+    },
+    
+    {
+        path: "*",
+        element: <h1>404 Not Found</h1>
     }
 ])
