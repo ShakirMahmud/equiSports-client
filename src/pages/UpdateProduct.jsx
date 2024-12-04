@@ -7,7 +7,6 @@ import Swal from 'sweetalert2';
 const UpdateProduct = () => {
     const product = useLoaderData() || [];
     const { user } = useContext(AuthContext);
-    console.log(product)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,7 +25,7 @@ const UpdateProduct = () => {
 
         const updatedProduct = { image, itemName, categoryName, description, price, rating, customization, processingTime, stockStatus, userEmail, userName };
 
-        // add to db
+        // update 
         fetch(`http://localhost:5000/products/${product._id}`, {
             method: 'PUT',
             headers: {

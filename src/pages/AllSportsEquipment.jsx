@@ -1,25 +1,42 @@
-import { MdOutlineDeleteOutline } from "react-icons/md";
 import React, { useState } from 'react';
-import NavBar from '../components/NavBar';
+import { FaSortAmountDown, FaSortAmountDownAlt } from "react-icons/fa";
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import Swal from "sweetalert2";
+import NavBar from '../components/NavBar';
 
 const AllSportsEquipment = () => {
     const loadedProducts = useLoaderData() || [];
     const [products, setProducts] = useState(loadedProducts);
+    const [isSortedDesc, setIsSortedDesc] = useState(false); 
     const navigate = useNavigate();
 
-    
+    // Handle the sorting logic
+    const handleSort = async () => {
+        try {
+            const sortedProducts = isSortedDesc
+                ? products.sort((a, b) => a.price - b.price)
+                : products.sort((a, b) => b.price - a.price);
+            setProducts(sortedProducts);
+            setIsSortedDesc(!isSortedDesc);
+        } catch (error) {
+            console.error('Error sorting products:', error);
+        }
+    };
 
     return (
         <div>
             <NavBar />
             <div>
                 <h2>Total Sports Equipment: {products.length}</h2>
-                {/* Display all equipment in a table format.  */}
+                <button
+                    onClick={handleSort}
+                    className="ml-0 lg:ml-4 px-6 py-4 bg-blue-500 text-white rounded-full hover:bg-blue-600 flex items-center gap-3"
+                >
+                    Sort by Price {!isSortedDesc ? <FaSortAmountDown /> : <FaSortAmountDownAlt />}
+                </button>
+
+                {/* Display all equipment in a table format */}
                 <div className="overflow-x-auto">
                     <table className="table">
-                        {/* head */}
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -29,15 +46,13 @@ const AllSportsEquipment = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {
-                                products.map(product => <tr key={product._id}>
+                            {products.map(product => (
+                                <tr key={product._id}>
                                     <td>
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
                                                 <div className="mask mask-squircle h-12 w-12">
-                                                    <img
-                                                        src={product.image}
-                                                        alt={product.itemName} />
+                                                    <img src={product.image} alt={product.itemName} />
                                                 </div>
                                             </div>
                                             <div>
@@ -54,23 +69,10 @@ const AllSportsEquipment = () => {
                                     <td>{product.price}$</td>
                                     <th>
                                         <button onClick={() => navigate(`/allSportsEquipment/${product._id}`)} className="btn btn-ghost btn-xs">View details</button>
-                                        <button onClick={() => handleDelete(product._id)}><MdOutlineDeleteOutline /></button>
                                     </th>
-                                </tr>)
-                            }
-                            {/* row 1 */}
-
+                                </tr>
+                            ))}
                         </tbody>
-                        {/* foot */}
-                        <tfoot>
-                            <tr>
-                                <th></th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>

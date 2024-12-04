@@ -45,6 +45,8 @@ const SignUp = () => {
             })
     }
 
+    
+
     const handleSignUp = (e) => {
         e.preventDefault();
         const form = new FormData(e.target);
@@ -53,11 +55,28 @@ const SignUp = () => {
         const email = form.get('email');
         const password = form.get('password');
 
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasLowercase = /[a-z]/.test(password);
+        const isValidLength = password.length >= 6;
+
+        if (!hasUppercase) {
+            setError('Password must contain at least one uppercase letter.');
+            return;
+        }
+        if (!hasLowercase) {
+            setError('Password must contain at least one lowercase letter.');
+            return;
+        }
+        if (!isValidLength) {
+            setError('Password must be at least 6 characters long.');
+            return;
+        }
+
         createNewUser(email, password)
             .then(res => {
                 setUser(res.user);
                 console.log('User created successfully at firebase', res.user);
-
+                setError('');
                 // create user to db
                 const newUser = { name, photo, email };
                 postToDB(newUser);
