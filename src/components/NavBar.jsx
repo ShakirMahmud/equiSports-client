@@ -1,20 +1,22 @@
 import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
+import { ThemeContext } from '../provider/ThemeProvider';
 
 const NavBar = () => {
-    const navigate = useNavigate();
+    
     const { user, logOut } = useContext(AuthContext);
+    const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
     const links = <div className='flex flex-col lg:flex-row gap-3'>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allSportsEquipment'>All Sports Equipment</NavLink></li>
         {
-            user?.email && 
+            user?.email &&
             <li><NavLink to='/addEquipment'>Add Equipment</NavLink></li>
         }
         {
-            user?.email && 
+            user?.email &&
             <li><NavLink to='/myEquipmentList'>My Equipment List</NavLink></li>
         }
     </div>
@@ -50,13 +52,19 @@ const NavBar = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className=" font-bold menu-horizontal px-1">
-                            {
-                                links
-                            }
+                        {
+                            links
+                        }
                     </ul>
                 </div>
                 <div className="navbar-end">
-                {
+                    <button onClick={toggleTheme} className='btn btn-neutral bg-btn_bg rounded-xl'>
+                        {
+                            isDarkMode ? 'Light Mode' : 'Dark Mode' 
+                        }
+                    </button>
+                    
+                    {
                         user && user?.email ?
                             <div className='flex gap-3 items-center justify-center'>
                                 <div className='w-12 h-12 bg-card_bg rounded-full flex justify-center items-center '>

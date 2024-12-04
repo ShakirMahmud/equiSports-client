@@ -11,3 +11,30 @@ a.active{
     border-bottom: 3px solid black;
     
 }
+
+/* Default light mode styles */
+body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+button {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* Dark mode styles */
+html.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+html.dark body {
+  background-color: #181818;
+  color: #ffffff;
+}
+
+html.dark button {
+  background-color: #333;
+  color: #fff;
+}
