@@ -1,4 +1,4 @@
-import { MdOutlineDeleteOutline } from "react-icons/md"; 
+import { MdOutlineDeleteOutline } from "react-icons/md";
 import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 import { useLoaderData } from 'react-router-dom';
@@ -22,7 +22,7 @@ const AllSportsEquipment = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/products/${_id}`, {
+                fetch(`http://localhost:5000/products/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -41,7 +41,6 @@ const AllSportsEquipment = () => {
 
                         }
                     })
-
             }
         });
     }
@@ -50,6 +49,7 @@ const AllSportsEquipment = () => {
         <div>
             <NavBar />
             <div>
+                <h2>Total Sports Equipment: {products.length}</h2>
                 {/* Display all equipment in a table format.  */}
                 <div className="overflow-x-auto">
                     <table className="table">
@@ -75,17 +75,17 @@ const AllSportsEquipment = () => {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="font-bold">{ product.itemName }</div>
-                                                <div className="text-sm opacity-50">Stock: { product.stockStatus }</div>
+                                                <div className="font-bold">{product.itemName}</div>
+                                                <div className="text-sm opacity-50">Stock: {product.stockStatus}</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        { product.categoryName }
+                                        {product.categoryName}
                                         <br />
-                                        <span className="badge badge-ghost badge-sm">{ product.customization }</span>
+                                        <span className="badge badge-ghost badge-sm">{product.customization}</span>
                                     </td>
-                                    <td>{ product.price }$</td>
+                                    <td>{product.price}$</td>
                                     <th>
                                         <button className="btn btn-ghost btn-xs">details</button>
                                         <button onClick={() => handleDelete(product._id)}><MdOutlineDeleteOutline /></button>
