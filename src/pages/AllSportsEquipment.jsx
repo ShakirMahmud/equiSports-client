@@ -6,7 +6,7 @@ import NavBar from '../components/NavBar';
 const AllSportsEquipment = () => {
     const loadedProducts = useLoaderData() || [];
     const [products, setProducts] = useState(loadedProducts);
-    const [isSortedDesc, setIsSortedDesc] = useState(false); 
+    const [isSortedDesc, setIsSortedDesc] = useState(false);
     const navigate = useNavigate();
 
     // Handle the sorting logic
@@ -24,7 +24,9 @@ const AllSportsEquipment = () => {
 
     return (
         <div>
-            <NavBar />
+            <div className='sticky top-0 z-50 backdrop-blur bg-white/80 transition-all duration-300'>
+                <NavBar />
+            </div>
             <div>
                 <h2>Total Sports Equipment: {products.length}</h2>
                 <button

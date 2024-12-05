@@ -1,10 +1,15 @@
+import { BiLogOut } from "react-icons/bi";
+import { MdOutlineDarkMode } from "react-icons/md";
+import { BiSun } from "react-icons/bi";
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import { BiLogIn } from "react-icons/bi";
 import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import { ThemeContext } from '../provider/ThemeProvider';
 
 const NavBar = () => {
-    
+
     const { user, logOut } = useContext(AuthContext);
     const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
@@ -22,8 +27,8 @@ const NavBar = () => {
     </div>
 
     return (
-        <div>
-            <div className="navbar bg-white border-2">
+        <div className='w-full border-2'>
+            <div className="navbar bg-white  py-4 w-4/5 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -48,7 +53,9 @@ const NavBar = () => {
                             }
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost text-xl">EquiSports</Link>
+                    <Link to='/' className="btn btn-ghost text-3xl font-bold flex items-center gap-0">
+                        <span className='border-b-4 border-black'><span className='border-b-4 border-black italic'>Equi</span></span><span className='font-semibold text-gray-500 italic'>Sports</span>
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className=" font-bold menu-horizontal px-1">
@@ -57,25 +64,31 @@ const NavBar = () => {
                         }
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <button onClick={toggleTheme} className='btn btn-neutral bg-btn_bg rounded-xl'>
+                <div className="navbar-end gap-3">
+                    <button onClick={toggleTheme} className='text-3xl bg-white font-black'>
                         {
-                            isDarkMode ? 'Light Mode' : 'Dark Mode' 
+                            isDarkMode ? <span className="text-yellow-600"><BiSun /></span> : <MdOutlineDarkMode />
                         }
                     </button>
-                    
+
                     {
                         user && user?.email ?
                             <div className='flex gap-3 items-center justify-center'>
                                 <div className='w-12 h-12 bg-card_bg rounded-full flex justify-center items-center '>
-                                    <img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" title={user?.displayName} />
+                                    <img data-tooltip-id="my-tooltip-2" className='w-10 h-10 rounded-full' src={user?.photoURL} alt=""  />
                                 </div>
-                                <Link onClick={logOut} className='btn btn-neutral bg-btn_bg rounded-xl'>Logout</Link>
+                                <ReactTooltip
+                                    id="my-tooltip-2"
+                                    place="bottom"
+                                    variant="info"
+                                    content={user?.displayName}
+                                />
+                                <Link onClick={logOut} className='btn bg-[#050b36] hover:bg-[#e1d1e8] px-6 text-white hover:text-black  hover:font-bold text-lg font-semibold  rounded-xl'>Logout <BiLogOut /></Link>
                             </div>
                             :
                             <div className='flex gap-3'>
-                                <Link to='/auth/signIn' className='btn btn-neutral bg-btn_bg rounded-xl'>Sign In</Link>
-                                <Link to='/auth/signup' className='btn btn-neutral bg-btn_bg rounded-xl'>Sign Up</Link>
+                                <Link to='/auth/signIn' className='btn bg-white border-1 border-gray-400 rounded-xl text-lg font-semibold hover:bg-[#acb3e3] hover:border-white hover:text-black hover:font-bold'>Sign In <BiLogIn /></Link>
+                                <Link to='/auth/signup' className='btn bg-[#050b36] hover:bg-[#e1d1e8] px-6 text-white hover:text-black  hover:font-bold text-lg font-semibold  rounded-xl'>Sign Up </Link>
                             </div>
                     }
                 </div>
