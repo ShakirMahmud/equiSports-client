@@ -20,7 +20,7 @@ const SignIn = () => {
         const form = new FormData(e.target);
         const email = form.get('email');
         const password = form.get('password');
-        
+
         userSignIn(email, password)
             .then((res) => {
                 setUser(res.user);
@@ -30,8 +30,8 @@ const SignIn = () => {
                     text: 'You have successfully logged in. You will be redirected shortly, or click OK to proceed immediately.',
                     icon: 'success',
                     confirmButtonText: 'OK',
-                    timer: 3000, 
-                    timerProgressBar: true, 
+                    timer: 3000,
+                    timerProgressBar: true,
                 }).then((result) => {
                     if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
                         navigate(location?.state ? location.state : '/');
@@ -69,6 +69,7 @@ const SignIn = () => {
     return (
         <div>
             <div className="card bg-white w-full max-w-xl mx-auto p-6 rounded-xl shrink-0 shadow-2xl">
+                
                 <form onSubmit={handleSignIn} className="card-body">
                     <div className="form-control">
                         <label className="label">
