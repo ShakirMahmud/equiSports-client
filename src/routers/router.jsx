@@ -10,6 +10,7 @@ import MyEquipmentList from "../pages/MyEquipmentList";
 import ViewAProductDetails from "../pages/ViewAProductDetails";
 import UpdateProduct from "../pages/UpdateProduct";
 import PrivateRouteLayout from "../layouts/PrivateRouteLayout";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
     {
@@ -76,6 +77,6 @@ export const router = createBrowserRouter([
 
     {
         path: "*",
-        element: <h1>404 Not Found</h1>
+        element: <ErrorPage/>
     }
 ])
