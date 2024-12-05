@@ -52,7 +52,7 @@ const MyEquipmentList = () => {
 
     return (
         <div>
-            <NavBar/>
+            
             <h2>My Equipment List {addByThisUser.length}</h2>
             <div>
             <div className="overflow-x-auto">

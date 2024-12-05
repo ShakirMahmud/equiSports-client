@@ -18,11 +18,11 @@ const NavBar = () => {
         <li><NavLink to='/allSportsEquipment'>All Sports Equipment</NavLink></li>
         {
             user?.email &&
-            <li><NavLink to='/addEquipment'>Add Equipment</NavLink></li>
+            <li><NavLink to='/privateRoute/addEquipment'>Add Equipment</NavLink></li>
         }
         {
             user?.email &&
-            <li><NavLink to='/myEquipmentList'>My Equipment List</NavLink></li>
+            <li><NavLink to='/privateRoute/myEquipmentList'>My Equipment List</NavLink></li>
         }
     </div>
 

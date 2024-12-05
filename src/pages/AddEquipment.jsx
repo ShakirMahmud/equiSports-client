@@ -48,7 +48,7 @@ const AddEquipment = () => {
 
     return (
         <div>
-            <NavBar />
+            
             <div>
                 <form className='grid grid-cols-2 gap-8' onSubmit={handleSubmit}>
                     {/* image  */}

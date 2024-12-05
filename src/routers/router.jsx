@@ -9,60 +9,71 @@ import AddEquipment from "../pages/AddEquipment";
 import MyEquipmentList from "../pages/MyEquipmentList";
 import ViewAProductDetails from "../pages/ViewAProductDetails";
 import UpdateProduct from "../pages/UpdateProduct";
+import PrivateRouteLayout from "../layouts/PrivateRouteLayout";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <HomeLayout/>,
+        element: <HomeLayout />,
     },
     {
         path: "/auth",
-        element: <AuthLayout/>,
+        element: <AuthLayout />,
         children: [
             {
                 path: "/auth/signIn",
-                element: <SignIn/>,
+                element: <SignIn />,
             },
             {
                 path: "/auth/signUp",
-                element: <SignUp/>,
+                element: <SignUp />,
             }
         ]
     },
     {
+        path: '/privateRoute',
+        element: <PrivateRoute>
+            <PrivateRouteLayout />
+        </PrivateRoute>,
+        children: [
+            {
+                path: '/privateRoute/addEquipment',
+                element: <PrivateRoute>
+                    <AddEquipment />
+                </PrivateRoute>
+            },
+            {
+                path: '/privateRoute/myEquipmentList',
+                element: <PrivateRoute>
+                    <MyEquipmentList />
+                </PrivateRoute>,
+                loader: () => fetch('http://localhost:5000/products')
+            },
+            {
+                path: '/privateRoute/updateProduct/:id',
+                element: <PrivateRoute>
+                    <UpdateProduct />
+                </PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+
+            },
+        ]
+
+    },
+    {
         path: '/allSportsEquipment',
-        element: <AllSportsEquipment/>,
+        element: <AllSportsEquipment />,
         loader: () => fetch('http://localhost:5000/products'),
     },
     {
         path: '/allSportsEquipment/:id',
         element: <PrivateRoute>
-            <ViewAProductDetails/>
+            <ViewAProductDetails />
         </PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
     },
-    {
-        path: '/addEquipment',
-        element: <PrivateRoute>
-            <AddEquipment/>
-        </PrivateRoute>
-    },
-    {
-        path: '/myEquipmentList',
-        element: <PrivateRoute>
-            <MyEquipmentList/>
-        </PrivateRoute>,
-        loader: () => fetch('http://localhost:5000/products')
-    },
-    {
-        path: '/updateProduct/:id',
-        element: <PrivateRoute>
-            <UpdateProduct/>
-        </PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
 
-    },
-    
+
     {
         path: "*",
         element: <h1>404 Not Found</h1>
