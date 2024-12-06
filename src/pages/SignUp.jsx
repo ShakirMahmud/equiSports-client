@@ -30,7 +30,7 @@ const SignUp = () => {
     }
 
     const postToDB = (newUser) => {
-        fetch('http://localhost:5000/users', {
+        fetch('https://equi-sports-server-shakir.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

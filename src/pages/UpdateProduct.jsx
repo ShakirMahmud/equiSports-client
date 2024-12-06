@@ -26,7 +26,7 @@ const UpdateProduct = () => {
         const updatedProduct = { image, itemName, categoryName, description, price, rating, customization, processingTime, stockStatus, userEmail, userName };
 
         // update 
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`https://equi-sports-server-shakir.vercel.app/products/${product._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

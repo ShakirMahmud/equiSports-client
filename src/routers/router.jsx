@@ -48,14 +48,14 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <MyEquipmentList />
                 </PrivateRoute>,
-                loader: () => fetch('http://localhost:5000/products')
+                loader: () => fetch('https://equi-sports-server-shakir.vercel.app/products')
             },
             {
                 path: '/privateRoute/updateProduct/:id',
                 element: <PrivateRoute>
                     <UpdateProduct />
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({ params }) => fetch(`https://equi-sports-server-shakir.vercel.app/products/${params.id}`)
 
             },
         ]
@@ -64,14 +64,14 @@ export const router = createBrowserRouter([
     {
         path: '/allSportsEquipment',
         element: <AllSportsEquipment />,
-        loader: () => fetch('http://localhost:5000/products'),
+        loader: () => fetch('https://equi-sports-server-shakir.vercel.app/products'),
     },
     {
         path: '/allSportsEquipment/:id',
         element: <PrivateRoute>
             <ViewAProductDetails />
         </PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+        loader: ({ params }) => fetch(`https://equi-sports-server-shakir.vercel.app/products/${params.id}`)
     },
 
 

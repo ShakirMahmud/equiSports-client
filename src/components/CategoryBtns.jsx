@@ -5,31 +5,34 @@ const CategoryBtns = () => {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState([]); // Empty array by default
+    const [activeButton, setActiveButton] = useState("all"); // Track the active button
     const [currentPage, setCurrentPage] = useState(0); // Track which set of 5 categories to display
     const navigate = useNavigate();
 
     // Fetch all products
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://equi-sports-server-shakir.vercel.app/products')
             .then((res) => res.json())
             .then((data) => setProducts(data));
     }, []);
 
     // Fetch all categories
     useEffect(() => {
-        fetch('http://localhost:5000/categories')
+        fetch('https://equi-sports-server-shakir.vercel.app/categories')
             .then((res) => res.json())
             .then((data) => setCategories(data));
     }, []);
 
     // Handle category click
     const handleCategoryClick = (category) => {
+        setActiveButton(category); // Mark the clicked category as active
         setSelectedCategory(products.filter((product) => product.categoryName === category));
     };
 
     // Handle "All Products" button click
     const handleAllProductsClick = () => {
-        setSelectedCategory(products);
+        setActiveButton("all"); // Mark "All Products" as active
+        setSelectedCategory(products); // Show all products
     };
 
     // Handle "Show Next" button click (>)
@@ -54,7 +57,7 @@ const CategoryBtns = () => {
             <div className="flex gap-3">
                 {/* Show All Products button */}
                 <button
-                    className={`bg-white px-3 py-2 border-2 ${selectedCategory.length === 0 ? "border-blue-500" : "border-gray-500"}`}
+                    className={`bg-white px-3 py-2 border-2 ${activeButton === "all" ? "border-blue-500" : "border-gray-500"}`}
                     onClick={handleAllProductsClick}
                 >
                     All Products
@@ -73,7 +76,7 @@ const CategoryBtns = () => {
                 {/* Show categories based on the current page */}
                 {visibleCategories.map((category, index) => (
                     <button
-                        className={`bg-white px-3 py-2 border-2 ${selectedCategory.some((product) => product.categoryName === category) ? "border-blue-500" : "border-gray-500"}`}
+                        className={`bg-white px-3 py-2 border-2 ${activeButton === category ? "border-blue-500" : "border-gray-500"}`}
                         key={index}
                         onClick={() => handleCategoryClick(category)}
                     >

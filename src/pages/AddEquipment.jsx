@@ -24,7 +24,7 @@ const AddEquipment = () => {
         const newProduct = { image, itemName, categoryName, description, price, rating, customization, processingTime, stockStatus, userEmail, userName };
 
         // add to db
-        fetch('http://localhost:5000/products', {
+        fetch('https://equi-sports-server-shakir.vercel.app/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

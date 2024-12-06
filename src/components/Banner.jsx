@@ -11,7 +11,7 @@ const Banner = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://equi-sports-server-shakir.vercel.app/products')
             .then((res) => res.json())
             .then((data) => setProducts(data));
     }, []);
