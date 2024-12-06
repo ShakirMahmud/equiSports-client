@@ -73,7 +73,7 @@ const Testimonials = () => {
           <Player
             autoplay
             loop
-            src="/public/Animation - 1733475754198.json" // Lottie animation URL
+            src="/Animation - 1733475754198.json" // Lottie animation URL
             style={{ height: '300px', width: '300px', margin: 'auto' }}
           />
         </div>
