@@ -92,7 +92,7 @@ const MyEquipmentList = () => {
                                     <td>{product.price}$</td>
                                     <th>
                                         <button onClick={() => navigate(`/allSportsEquipment/${product._id}`)} className="btn btn-ghost btn-xs">View details</button>
-                                        <button onClick={() => navigate(`/updateProduct/${product._id}`)} className="btn btn-ghost btn-xs">Update</button>
+                                        <button onClick={() => navigate(`/privateRoute/products/${product._id}`)} className="btn btn-ghost btn-xs">Update</button>
                                         <button onClick={() => handleDelete(product._id)}><MdOutlineDeleteOutline /></button>
                                     </th>
                                 </tr>)

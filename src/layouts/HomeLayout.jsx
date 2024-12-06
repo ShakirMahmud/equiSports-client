@@ -13,14 +13,14 @@ const HomeLayout = () => {
             <header>
                 <NavBar />
             </header>
-            <main>
+            <main >
                 <section>
                     <Banner/>
                 </section>
-                <section>
+                <section className='w-4/5 mx-auto'>
                     <CategoryBtns/>
                 </section>
-                <section>
+                <section className='w-11/12 mx-auto'>
                     <Testimonials/>
                 </section>
                 <section>
