@@ -20,9 +20,10 @@ const Banner = () => {
     const settings = {
         centerMode: true,
         centerPadding: '60px',
-        slidesToShow: 3,
+        slidesToShow: 5,
         autoplay: true,
         autoplaySpeed: 3500,
+        arrows: false,
         beforeChange: (current, next) => setActiveSlide(next), // Update active slide
         responsive: [
             {
@@ -39,7 +40,7 @@ const Banner = () => {
                 settings: {
                     arrows: false,
                     centerMode: true,
-                    centerPadding: '40px',
+                    centerPadding: '20px',
                     slidesToShow: 1,
                 },
             },
@@ -47,7 +48,7 @@ const Banner = () => {
     };
 
     return (
-        <div className=''>
+        <div className="overflow-hidden"> {/* Ensure no horizontal overflow */}
             <div className="bg-[#f0f5f5] px-20 py-8">
                 <h2 className="flex items-center gap-2 justify-center">
                     <span className="text-3xl text-orange-600 font-bold">35% OFF</span>
@@ -60,7 +61,7 @@ const Banner = () => {
                     </span>
                 </h2>
             </div>
-            <div className=" bg-[#ececec]">
+            <div className="bg-[#ececec] py-12 px-8"> {/* Add padding for responsiveness */}
                 <Slider {...settings}>
                     {products.map((product, index) => (
                         <div
@@ -79,7 +80,7 @@ const Banner = () => {
                                     } object-contain`}
                                 />
                                 {index === activeSlide && (
-                                    <Fade delay={600} >
+                                    <Fade delay={600}>
                                         <h3 className="text-lg font-semibold mt-2">{product.itemName}</h3>
                                         <p className="text-gray-500 text-sm">{product.categoryName}</p>
                                         <p className="text-orange-600 font-bold mt-2">${product.price}</p>

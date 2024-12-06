@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Banner from '../components/Banner';
 import CategoryBtns from '../components/CategoryBtns';
+import Testimonials from '../components/Testimonials';
 
 const HomeLayout = () => {
     return (
@@ -17,6 +18,9 @@ const HomeLayout = () => {
                 </section>
                 <section>
                     <CategoryBtns/>
+                </section>
+                <section>
+                    <Testimonials/>
                 </section>
                 <Outlet />
             </main>
