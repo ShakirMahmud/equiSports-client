@@ -1,21 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react';
-import NavBar from '../components/NavBar';
-import { AuthContext } from '../provider/AuthProvider';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import { MdOutlineDeleteOutline } from 'react-icons/md';
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { MdOutlineDeleteOutline } from "react-icons/md";
 
 const MyEquipmentList = () => {
     const allProducts = useLoaderData() || [];
     const { user } = useContext(AuthContext);
-    const [ addByThisUser, setAddByThisUser ] = useState([]);
+    const [addByThisUser, setAddByThisUser] = useState([]);
     const navigate = useNavigate();
-    const matchByEmail = allProducts.filter(product => product.userEmail === user?.email);
+    const matchByEmail = allProducts.filter(
+        (product) => product.userEmail === user?.email
+    );
+
     useEffect(() => {
         setAddByThisUser(matchByEmail);
-    }, []);
+    }, [matchByEmail]);
 
-    const handleDelete = id => {
+    const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -23,95 +25,160 @@ const MyEquipmentList = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-
                 fetch(`https://equi-sports-server-shakir.vercel.app/products/${id}`, {
-                    method: 'DELETE'
+                    method: "DELETE",
                 })
-                    .then(res => res.json())
-                    .then(data => {
-                        // console.log(data);
+                    .then((res) => res.json())
+                    .then((data) => {
                         if (data.deletedCount) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",
-                                icon: "success"
+                                icon: "success",
                             });
 
-                            // update the loaded products state
-                            const remaining = addByThisUser.filter(product => product._id !== id);
+                            const remaining = addByThisUser.filter(
+                                (product) => product._id !== id
+                            );
                             setAddByThisUser(remaining);
-
                         }
-                    })
+                    });
             }
         });
-    }
+    };
 
     return (
-        <div>
-            
-            <h2>My Equipment List {addByThisUser.length}</h2>
-            <div>
-            <div className="overflow-x-auto">
-                    <table className="table">
-                        {/* head */}
-                        <thead>
+        <div className="min-h-screen bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+                <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6 text-center">
+                    You added {addByThisUser.length} products
+                </h2>
+
+                {/* Table for larger screens */}
+                <div className="hidden sm:block overflow-hidden bg-white rounded-lg shadow-lg">
+                    <table className="table-auto w-full">
+                        <thead className="bg-gray-200">
                             <tr>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th></th>
+                                <th className="px-3 py-3 text-sm font-medium text-gray-700">Name</th>
+                                <th className="px-3 py-3 text-sm font-medium text-gray-700">Category</th>
+                                <th className="px-3 py-3 text-sm font-medium text-gray-700">Price</th>
+                                <th className="px-3 py-3 text-sm font-medium text-gray-700 text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {
-                                addByThisUser.map(product => <tr key={product._id}>
-                                    <td>
+                            {addByThisUser.map((product) => (
+                                <tr key={product._id} className="border-b hover:bg-gray-100 transition">
+                                    <td className="px-3 py-4">
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
-                                                <div className="mask mask-squircle h-12 w-12">
-                                                    <img
-                                                        src={product.image}
-                                                        alt={product.itemName} />
+                                                <div className="mask mask-squircle h-10 w-10">
+                                                    <img src={product.image} alt={product.itemName} />
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="font-bold">{product.itemName}</div>
-                                                <div className="text-sm opacity-50">Stock: {product.stockStatus}</div>
+                                                <p className="font-medium">{product.itemName}</p>
+                                                <p className="text-sm text-gray-500">Stock: {product.stockStatus}</p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td className="px-3 py-4">
                                         {product.categoryName}
                                         <br />
                                         <span className="badge badge-ghost badge-sm">{product.customization}</span>
                                     </td>
-                                    <td>{product.price}$</td>
-                                    <th>
-                                        <button onClick={() => navigate(`/allSportsEquipment/${product._id}`)} className="btn btn-ghost btn-xs">View details</button>
-                                        <button onClick={() => navigate(`/privateRoute/products/${product._id}`)} className="btn btn-ghost btn-xs">Update</button>
-                                        <button onClick={() => handleDelete(product._id)}><MdOutlineDeleteOutline /></button>
-                                    </th>
-                                </tr>)
-                            }
-                            {/* row 1 */}
-
+                                    <td className="px-3 py-4 font-medium text-gray-800">{product.price}$</td>
+                                    <td className="px-3 py-4">
+                                        <div className="flex flex-wrap justify-center gap-2">
+                                            <button
+                                                onClick={() => navigate(`/product/${product._id}`)}
+                                                className="btn bg-[#65b5b4] hover:bg-[#649191] text-white text-sm px-4 py-1"
+                                            >
+                                                View
+                                            </button>
+                                            <button
+                                                onClick={() => navigate(`/privateRoute/products/${product._id}`)}
+                                                className="btn bg-[#65b5b4] hover:bg-[#649191] text-white text-sm px-4 py-1"
+                                            >
+                                                Update
+                                            </button>
+                                            <button
+                                                onClick={() => handleDelete(product._id)}
+                                                className="btn bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-1 flex items-center gap-1"
+                                            >
+                                                <MdOutlineDeleteOutline className="text-base" />
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
-                        {/* foot */}
-                        <tfoot>
-                            <tr>
-                                <th></th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
+
+                {/* Card layout for small screens */}
+                <div className="sm:hidden space-y-4">
+  {addByThisUser.map((product) => (
+    <div
+      key={product._id}
+      className="p-4 bg-white rounded-lg shadow-md flex flex-col items-center gap-4"
+    >
+      {/* Avatar and Name Section */}
+      <div className="flex flex-col items-center gap-2">
+        <div className="avatar">
+          <div className="mask mask-squircle h-14 w-14">
+            <img src={product.image} alt={product.itemName} />
+          </div>
+        </div>
+        <div className="text-center">
+          <h3 className="font-semibold text-lg">{product.itemName}</h3>
+          <p className="text-sm text-gray-500">
+            Stock: {product.stockStatus}
+          </p>
+        </div>
+      </div>
+
+      {/* Product Details */}
+      <div className="text-center">
+        <p>
+          <span className="font-semibold">Category: </span>
+          {product.categoryName}
+        </p>
+        <p>
+          <span className="font-semibold">Price: </span>
+          {product.price}$
+        </p>
+      </div>
+
+      {/* Buttons */}
+      <div className="flex justify-center gap-2">
+        <button
+          onClick={() => navigate(`/product/${product._id}`)}
+          className="btn bg-[#65b5b4] hover:bg-[#649191] text-white text-sm px-4 py-1"
+        >
+          View
+        </button>
+        <button
+          onClick={() => navigate(`/privateRoute/products/${product._id}`)}
+          className="btn bg-[#65b5b4] hover:bg-[#649191] text-white text-sm px-4 py-1"
+        >
+          Update
+        </button>
+        <button
+          onClick={() => handleDelete(product._id)}
+          className="btn bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-1 flex items-center gap-1"
+        >
+          <MdOutlineDeleteOutline className="text-base" />
+          Delete
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
+
             </div>
         </div>
     );

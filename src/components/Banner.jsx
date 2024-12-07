@@ -71,7 +71,7 @@ const Banner = () => {
                                     ? 'scale-125 z-10' // Make the center card bigger
                                     : 'scale-75'
                             }`}>
-                            <div onClick={() => navigate(`/allSportsEquipment/${product._id}`)} className="bg-[#ececec] p-4 text-center flex flex-col justify-center items-center">
+                            <div onClick={() => navigate(`/product/${product._id}`)} className="bg-[#ececec] p-4 text-center flex flex-col justify-center items-center">
                                 <img
                                     src={product.image}
                                     alt={product.itemName}

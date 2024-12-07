@@ -25,7 +25,7 @@ const UpdateProduct = () => {
 
         const updatedProduct = { image, itemName, categoryName, description, price, rating, customization, processingTime, stockStatus, userEmail, userName };
 
-        // update 
+        // Update product API call
         fetch(`https://equi-sports-server-shakir.vercel.app/products/${product._id}`, {
             method: 'PUT',
             headers: {
@@ -38,80 +38,159 @@ const UpdateProduct = () => {
                 if (data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'Product Updated Successfully!',
-                        text: 'You have successfully updated this product. You will be redirected shortly, or click OK to proceed immediately.',
+                        text: 'You have successfully updated this product.',
                         icon: 'success',
                         confirmButtonText: 'OK',
                         timer: 3000,
                         timerProgressBar: true,
-                    })
+                    });
                 }
-            })
+            });
     };
+
     return (
-        <div>
-           
-            <div>
-                <form className='grid grid-cols-2 gap-8' onSubmit={handleSubmit}>
-                    {/* image  */}
-                    <label className="input input-bordered flex items-center gap-2">
-                        Image
-                        <input type="text" name='image' className="grow" defaultValue={product.image} />
-                    </label>
-                    {/* item name  */}
-                    <label className="input input-bordered flex items-center gap-2">
-                        Item Name
-                        <input type="text" name='itemName' className="grow" defaultValue={product.itemName} />
-                    </label>
-                    {/* category name  */}
-                    <label className="input input-bordered flex items-center gap-2">
-                        Category Name
-                        <input type="text" name='categoryName' className="grow" defaultValue={product.categoryName} />
-                    </label>
-                    {/* description  */}
-                    <label className="input input-bordered flex items-center gap-2">
-                        Description
-                        <input type="text" name='description' className="grow" defaultValue={product.description} />
-                    </label>
-                    {/* price  */}
-                    <label className="input input-bordered flex items-center gap-2">
-                        Price
-                        <input type="text" name='price' className="grow" defaultValue={product.price} />
-                    </label>
-                    {/* Rating  */}
-                    <label className="input input-bordered flex items-center gap-2">
-                        Rating
-                        <input type="text" name='rating' className="grow" defaultValue={product.rating} />
-                    </label>
-                    {/* customization  */}
-                    <label className="input input-bordered flex items-center gap-2">
-                        Customization
-                        <input type="text" name='customization' className="grow" defaultValue={product.customization} />
-                    </label>
-                    {/* processing time  */}
-                    <label className="input input-bordered flex items-center gap-2">
-                        Processing Time
-                        <input type="text" name='processingTime' className="grow" defaultValue={product.processingTime} />
-                    </label>
-                    {/* stock status  */}
-                    <label className="input input-bordered flex items-center gap-2">
-                        Stock Status
-                        <input type="text" name='stockStatus' className="grow" defaultValue={product.stockStatus} />
-                    </label>
-                    {/* user email  */}
-                    <label className="input input-bordered flex items-center gap-2">
-                        User Email
-                        <input type="text" name='userEmail' className="grow" value={user?.email} readOnly />
-                    </label>
-                    {/* user name readonly  */}
-                    <label className="input input-bordered flex items-center gap-2">
-                        User Name
-                        <input type="text" value={user?.displayName} readOnly name='userName' className="grow" />
-                    </label>
-                    {/* submit button  */}
-                    <button type="submit" value="Submit" className="btn btn-primary">Submit</button>
-                </form>
+        <div className="bg-gray-50 min-h-screen">
+            {/* <NavBar /> */}
+            <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
+                <div className="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 className="text-3xl font-semibold text-center mb-8">
+                        Update Product
+                    </h2>
+                    <form className="grid grid-cols-1 sm:grid-cols-2 gap-6" onSubmit={handleSubmit}>
+                        {/* Image */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Image URL</label>
+                            <input
+                                type="text"
+                                name="image"
+                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                defaultValue={product.image}
+                            />
+                        </div>
+
+                        {/* Item Name */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Item Name</label>
+                            <input
+                                type="text"
+                                name="itemName"
+                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                defaultValue={product.itemName}
+                            />
+                        </div>
+
+                        {/* Category Name */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Category Name</label>
+                            <input
+                                type="text"
+                                name="categoryName"
+                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                defaultValue={product.categoryName}
+                            />
+                        </div>
+
+                        {/* Description */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                            <textarea
+                                name="description"
+                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                defaultValue={product.description}
+                            ></textarea>
+                        </div>
+
+                        {/* Price */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Price</label>
+                            <input
+                                type="text"
+                                name="price"
+                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                defaultValue={product.price}
+                            />
+                        </div>
+
+                        {/* Rating */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                            <input
+                                type="text"
+                                name="rating"
+                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                defaultValue={product.rating}
+                            />
+                        </div>
+
+                        {/* Customization */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Customization</label>
+                            <input
+                                type="text"
+                                name="customization"
+                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                defaultValue={product.customization}
+                            />
+                        </div>
+
+                        {/* Processing Time */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Processing Time</label>
+                            <input
+                                type="text"
+                                name="processingTime"
+                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                defaultValue={product.processingTime}
+                            />
+                        </div>
+
+                        {/* Stock Status */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Stock Status</label>
+                            <input
+                                type="text"
+                                name="stockStatus"
+                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                defaultValue={product.stockStatus}
+                            />
+                        </div>
+
+                        {/* User Email */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">User Email</label>
+                            <input
+                                type="text"
+                                name="userEmail"
+                                className="input input-bordered w-full border-gray-300 rounded-md bg-gray-100 text-gray-500"
+                                value={user?.email}
+                                readOnly
+                            />
+                        </div>
+
+                        {/* User Name */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">User Name</label>
+                            <input
+                                type="text"
+                                name="userName"
+                                className="input input-bordered w-full border-gray-300 rounded-md bg-gray-100 text-gray-500"
+                                value={user?.displayName}
+                                readOnly
+                            />
+                        </div>
+
+                        {/* Submit Button */}
+                        <div className="sm:col-span-2">
+                            <button
+                                type="submit"
+                                className="btn w-full bg-[#65b5b4] hover:bg-[#649191] text-white text-lg font-medium py-2.5 rounded-md"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            
         </div>
     );
 };
