@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import { Helmet } from "react-helmet-async";
 
 const MyEquipmentList = () => {
     const allProducts = useLoaderData() || [];
@@ -63,6 +64,9 @@ const MyEquipmentList = () => {
 
     return (
         <div className="bg-lightBg dark:bg-darkBg">
+            <Helmet>
+                <title>My Equipment - EquiSports</title>
+            </Helmet>
             {/* Navbar */}
             <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
                 <NavBar />

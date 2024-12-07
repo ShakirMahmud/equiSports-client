@@ -3,6 +3,7 @@ import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import { Helmet } from 'react-helmet-async';
 
 const AddEquipment = () => {
     const { user } = useContext(AuthContext);
@@ -48,6 +49,9 @@ const AddEquipment = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Add Equipment - EquiSports</title>
+            </Helmet>
             <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
                 <NavBar />
             </header>

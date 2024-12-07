@@ -1,11 +1,15 @@
 import { TbError404 } from "react-icons/tb"; 
 import React from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { Helmet } from "react-helmet-async";
 
 const ErrorPage = () => {
     const Navigate = useNavigate();
     return (
         <div>
+            <Helmet>
+                <title>404 - EquiSports</title>
+            </Helmet>
             <section className="bg-white dark:bg-gray-900 ">
                 <div className="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
                     <div className="wf-ull lg:w-1/2">

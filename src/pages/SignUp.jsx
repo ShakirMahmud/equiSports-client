@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
     const [isClicked, setIsClicked] = useState(true);
@@ -110,6 +111,9 @@ const SignUp = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-lightBg dark:bg-darkBg">
+            <Helmet>
+                <title>Sign Up - EquiSports</title>
+            </Helmet>
             <div className="card bg-lightCard dark:bg-darkCard w-full max-w-xl mx-auto p-6 rounded-xl shadow-2xl">
                 <form onSubmit={handleSignUp} className="card-body space-y-6">
                     <h2 className="text-2xl font-bold text-center text-lightText dark:text-darkText">

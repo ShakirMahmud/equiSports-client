@@ -4,6 +4,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Loading from "../pages/Loading"; // Import Loading component
+import { Helmet } from "react-helmet-async";
 
 const AllSportsEquipment = () => {
     const loadedProducts = useLoaderData() || [];
@@ -48,6 +49,9 @@ const AllSportsEquipment = () => {
 
     return (
         <div className="bg-lightBg dark:bg-darkBg">
+            <Helmet>
+                <title>All Sports Equipment - EquiSports</title>
+            </Helmet>
             {/* Navbar */}
             <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
                 <NavBar />

@@ -5,6 +5,7 @@ import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import Footer from '../components/Footer';
 import Loading from '../pages/Loading'; // Import the Loading component
+import { Helmet } from 'react-helmet-async';
 
 const UpdateProduct = () => {
     const [loading, setLoading] = useState(true); // Loading state
@@ -63,6 +64,9 @@ const UpdateProduct = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Update Product - EquiSports</title>
+            </Helmet>
             <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
                 <NavBar />
             </header>

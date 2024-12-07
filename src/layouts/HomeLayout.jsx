@@ -6,10 +6,14 @@ import Banner from '../components/Banner';
 import CategoryBtns from '../components/CategoryBtns';
 import Testimonials from '../components/Testimonials';
 import StoreLocationMap from '../components/StoreLocationMap';
+import { Helmet } from 'react-helmet-async';
 
 const HomeLayout = () => {
     return (
         <div className="bg-lightBg dark:bg-darkBg transition-colors duration-300">
+            <Helmet>
+                <title>EquiSports - Your Sports Equipment Store</title>
+            </Helmet>
             {/* Header */}
             <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
                 <NavBar />

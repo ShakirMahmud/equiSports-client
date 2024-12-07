@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import Footer from '../components/Footer';
 import Loading from '../pages/Loading'; // Import the Loading component
+import { Helmet } from 'react-helmet-async';
 
 // CustomStars Component
 const CustomStars = ({ rating }) => {
@@ -47,6 +48,9 @@ const ViewAProductDetails = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>View Product - EquiSports</title>
+            </Helmet>
             <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
                 <NavBar />
             </header>
