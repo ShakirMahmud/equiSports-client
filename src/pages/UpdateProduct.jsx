@@ -83,7 +83,7 @@ const UpdateProduct = () => {
                                 <input
                                     type="text"
                                     name="image"
-                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                     defaultValue={product.image}
                                 />
                             </div>
@@ -94,7 +94,7 @@ const UpdateProduct = () => {
                                 <input
                                     type="text"
                                     name="itemName"
-                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                     defaultValue={product.itemName}
                                 />
                             </div>
@@ -105,7 +105,7 @@ const UpdateProduct = () => {
                                 <input
                                     type="text"
                                     name="categoryName"
-                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                     defaultValue={product.categoryName}
                                 />
                             </div>
@@ -115,7 +115,7 @@ const UpdateProduct = () => {
                                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Description</label>
                                 <textarea
                                     name="description"
-                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                     defaultValue={product.description}
                                 ></textarea>
                             </div>
@@ -126,7 +126,7 @@ const UpdateProduct = () => {
                                 <input
                                     type="text"
                                     name="price"
-                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                     defaultValue={product.price}
                                 />
                             </div>
@@ -137,7 +137,7 @@ const UpdateProduct = () => {
                                 <input
                                     type="text"
                                     name="rating"
-                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                     defaultValue={product.rating}
                                 />
                             </div>
@@ -148,7 +148,7 @@ const UpdateProduct = () => {
                                 <input
                                     type="text"
                                     name="customization"
-                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                     defaultValue={product.customization}
                                 />
                             </div>
@@ -159,7 +159,7 @@ const UpdateProduct = () => {
                                 <input
                                     type="text"
                                     name="processingTime"
-                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                     defaultValue={product.processingTime}
                                 />
                             </div>
@@ -170,7 +170,7 @@ const UpdateProduct = () => {
                                 <input
                                     type="text"
                                     name="stockStatus"
-                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                     defaultValue={product.stockStatus}
                                 />
                             </div>
@@ -181,7 +181,7 @@ const UpdateProduct = () => {
                                 <input
                                     type="text"
                                     name="userEmail"
-                                    className="input input-bordered w-full border-gray-300 rounded-md bg-gray-100 text-gray-500"
+                                    className="input input-bordered w-full  dark:text-gray-300 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md  text-gray-500"
                                     value={user?.email}
                                     readOnly
                                 />
@@ -193,7 +193,7 @@ const UpdateProduct = () => {
                                 <input
                                     type="text"
                                     name="userName"
-                                    className="input input-bordered w-full border-gray-300 rounded-md bg-gray-100 text-gray-500"
+                                    className="input input-bordered w-full  dark:text-gray-300 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md  text-gray-500"
                                     value={user?.displayName}
                                     readOnly
                                 />

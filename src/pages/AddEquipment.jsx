@@ -43,6 +43,7 @@ const AddEquipment = () => {
                         timer: 3000,
                         timerProgressBar: true,
                     });
+                    e.target.reset();
                 }
             });
     };
@@ -65,7 +66,7 @@ const AddEquipment = () => {
                             <input
                                 type="text"
                                 name="image"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                 placeholder="Enter Image URL"
                             />
                         </div>
@@ -75,7 +76,7 @@ const AddEquipment = () => {
                             <input
                                 type="text"
                                 name="itemName"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                 placeholder="Enter Item Name"
                             />
                         </div>
@@ -85,7 +86,7 @@ const AddEquipment = () => {
                             <input
                                 type="text"
                                 name="categoryName"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                 placeholder="Enter Category Name"
                             />
                         </div>
@@ -94,7 +95,7 @@ const AddEquipment = () => {
                             <label className="block text-sm font-medium text-lightText dark:text-darkText mb-2">Description</label>
                             <textarea
                                 name="description"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                 placeholder="Enter Description"
                             ></textarea>
                         </div>
@@ -104,7 +105,7 @@ const AddEquipment = () => {
                             <input
                                 type="text"
                                 name="price"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                 placeholder="Enter Price"
                             />
                         </div>
@@ -114,7 +115,7 @@ const AddEquipment = () => {
                             <input
                                 type="text"
                                 name="rating"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                 placeholder="Enter Rating"
                             />
                         </div>
@@ -124,7 +125,7 @@ const AddEquipment = () => {
                             <input
                                 type="text"
                                 name="customization"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                 placeholder="Enter Customization Options"
                             />
                         </div>
@@ -134,7 +135,7 @@ const AddEquipment = () => {
                             <input
                                 type="text"
                                 name="processingTime"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                 placeholder="Enter Processing Time"
                             />
                         </div>
@@ -144,7 +145,7 @@ const AddEquipment = () => {
                             <input
                                 type="text"
                                 name="stockStatus"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                 placeholder="Enter Stock Status"
                             />
                         </div>
@@ -156,7 +157,7 @@ const AddEquipment = () => {
                                 name="userEmail"
                                 value={user?.email}
                                 readOnly
-                                className="input input-bordered w-full border-gray-300 rounded-md bg-gray-100 text-gray-500"
+                                className="input input-bordered w-full bg-lightBg dark:bg-darkBg border-gray-300 rounded-md  text-gray-300"
                             />
                         </div>
                         {/* User Name */}
@@ -167,7 +168,7 @@ const AddEquipment = () => {
                                 name="userName"
                                 value={user?.displayName}
                                 readOnly
-                                className="input input-bordered w-full border-gray-300 rounded-md bg-gray-100 text-gray-500"
+                                className="input input-bordered w-full bg-lightBg dark:bg-darkBg border-gray-300 rounded-md  text-gray-300"
                             />
                         </div>
                         {/* Submit Button */}
