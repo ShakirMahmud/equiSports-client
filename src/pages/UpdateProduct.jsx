@@ -4,11 +4,12 @@ import NavBar from '../components/NavBar';
 import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import Footer from '../components/Footer';
-import Loading from '../pages/Loading'; // Import the Loading component
+import Loading from '../pages/Loading'; 
 import { Helmet } from 'react-helmet-async';
 
 const UpdateProduct = () => {
-    const [loading, setLoading] = useState(true); // Loading state
+    const [loading, setLoading] = useState(true); 
+    const [error, setError] = useState(null);
     const product = useLoaderData() || {};
     const { user } = useContext(AuthContext);
 
@@ -20,12 +21,19 @@ const UpdateProduct = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setError('');
         const form = new FormData(e.target);
         const image = form.get('image');
         const itemName = form.get('itemName');
         const categoryName = form.get('categoryName');
         const description = form.get('description');
-        const price = form.get('price');
+        const priceString = form.get('price');
+        // check if the price is a valid number
+        if (isNaN(priceString)) {
+            setError('Price must be a number');
+            return;
+        }
+        const price = parseFloat(priceString);
         const rating = form.get('rating');
         const customization = form.get('customization');
         const processingTime = form.get('processingTime');
@@ -129,6 +137,9 @@ const UpdateProduct = () => {
                                     className="input input-bordered w-full text-black dark:text-gray-200 bg-lightBg dark:bg-darkBg border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
                                     defaultValue={product.price}
                                 />
+                                {
+                                    error && <p className="text-red-500 mt-2">{error}</p>
+                                }
                             </div>
 
                             {/* Rating */}

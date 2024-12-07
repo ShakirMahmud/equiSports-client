@@ -30,17 +30,15 @@ const AllSportsEquipment = () => {
         setProducts(loadedProducts);
     }, [loadedProducts]);
 
-    // Handle the sorting logic
-    const handleSort = async () => {
-        try {
-            const sortedProducts = isSortedDesc
-                ? products.sort((a, b) => a.price - b.price)
-                : products.sort((a, b) => b.price - a.price);
-            setProducts(sortedProducts);
-            setIsSortedDesc(!isSortedDesc);
-        } catch (error) {
-            console.error("Error sorting products:", error);
-        }
+    // Handle the sorting logic from server
+    const handleSort = () => {
+        // using server side sorting
+        fetch(`https://equi-sports-server-shakir.vercel.app/products/sort/${isSortedDesc ? "asc" : "desc"}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setProducts(data);
+                setIsSortedDesc(!isSortedDesc);
+            })
     };
 
     if (loading) {
