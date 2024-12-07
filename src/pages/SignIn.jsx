@@ -48,6 +48,7 @@ const SignIn = () => {
     signInWithGoogle()
       .then((res) => {
         setUser(res.user);
+        console.log(res.user)
         Swal.fire({
           title: "Google Sign In Successful!",
           text: "You have successfully signed in with Google. You will be redirected shortly, or click OK to proceed immediately.",

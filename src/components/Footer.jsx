@@ -13,7 +13,7 @@ const Footer = () => {
                                 <span className="border-b-4 border-black dark:border-white">
                                     <span className="border-b-4 border-black dark:border-white italic dark:text-white">Equi</span>
                                 </span>
-                                <span className="font-semibold text-gray-500 dark:text-gray-400 dark:text-white italic">Sports</span>
+                                <span className="font-semibold text-gray-500 dark:text-gray-400 italic">Sports</span>
                             </Link>
 
                             <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-300">
@@ -29,14 +29,14 @@ const Footer = () => {
                                     <FaReddit />
                                 </a>
                                 <a
-                                    href="#"
+                                    href="https://www.facebook.com/shakir.mahmud.9/"
                                     className="mx-2 text-gray-600 dark:text-gray-300 transition-colors duration-300 hover:text-blue-500 dark:hover:text-blue-300"
                                     aria-label="Facebook"
                                 >
                                     <FaFacebook />
                                 </a>
                                 <a
-                                    href="#"
+                                    href="https://github.com/ShakirMahmud"
                                     className="mx-2 text-gray-600 dark:text-gray-300 transition-colors duration-300 hover:text-blue-500 dark:hover:text-blue-300"
                                     aria-label="Github"
                                 >
@@ -120,7 +120,7 @@ const Footer = () => {
                                     +1 526 654 8965
                                 </span>
                                 <span className="block mt-2 text-sm text-gray-800 dark:text-gray-300 hover:underline">
-                                    example@email.com
+                                    shakirmahmud50@gmail.com
                                 </span>
                             </div>
                         </div>

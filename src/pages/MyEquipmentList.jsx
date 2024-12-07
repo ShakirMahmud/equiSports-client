@@ -157,7 +157,7 @@ const MyEquipmentList = () => {
                                 </div>
 
                                 {/* Product Details */}
-                                <div className="text-center">
+                                <div className="text-center text-lightText dark:text-darkText">
                                     <p>
                                         <span className="font-semibold text-lightText dark:text-darkText">Category: </span>
                                         {product.categoryName}
@@ -172,13 +172,13 @@ const MyEquipmentList = () => {
                                 <div className="flex justify-center gap-2">
                                     <button
                                         onClick={() => navigate(`/product/${product._id}`)}
-                                        className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-white text-sm px-4 py-1"
+                                        className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-black text-sm px-4 py-1"
                                     >
                                         View
                                     </button>
                                     <button
-                                        onClick={() => navigate(`/privateRoute/products/${product._id}`)}
-                                        className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-white text-sm px-4 py-1"
+                                        onClick={() => navigate(`/products/${product._id}`)}
+                                        className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-black text-sm px-4 py-1"
                                     >
                                         Update
                                     </button>

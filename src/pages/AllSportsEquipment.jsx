@@ -61,7 +61,7 @@ const AllSportsEquipment = () => {
                     </h2>
                     <button
                         onClick={handleSort}
-                        className="btn bg-lightBtn dark:bg-darkBtn flex items-center gap-2 text-black text-lg hover:bg-lightBtnHover dark:hover:bg-darkBtnHover focus:ring-4 focus:outline-none focus:ring-orange-300"
+                        className="btn bg-lightBtn dark:bg-darkBtn flex items-center gap-2 text-black text-lg hover:bg-lightBtnHover dark:hover:bg-darkBtnHover  "
                     >
                         Sort by Price{" "}
                         {!isSortedDesc ? <FaSortAmountDown /> : <FaSortAmountDownAlt />}

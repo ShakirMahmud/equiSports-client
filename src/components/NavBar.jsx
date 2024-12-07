@@ -40,7 +40,7 @@ const NavBar = () => {
                 <div className="w-full flex justify-between items-center lg:hidden">
                     {/* Dropdown for mobile */}
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost">
+                        <div tabIndex={0} role="button" className="btn btn-ghost dark:text-white">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5"
@@ -67,9 +67,9 @@ const NavBar = () => {
                     {/* Website Logo */}
                     <Link to="/" className="text-2xl font-bold flex items-center gap-0">
                         <span className="border-b-4 border-black dark:border-white">
-                            <span className="border-b-4 border-black dark:border-white italic">Equi</span>
+                            <span className="border-b-4 border-black dark:border-white dark:text-white italic">Equi</span>
                         </span>
-                        <span className="font-semibold text-gray-500 dark:text-white italic">Sports</span>
+                        <span className="font-semibold text-gray-500 dark:text-gray-400 italic">Sports</span>
                     </Link>
 
                     {/* Dark Mode Toggle */}
@@ -90,7 +90,7 @@ const NavBar = () => {
                         <button
                             disabled
                             type="button"
-                            className="text-white bg-[#5fbbc9] dark:bg-darkBtn font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 inline-flex items-center"
+                            className="text-black bg-[#5fbbc9] dark:bg-darkBtn font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 inline-flex items-center"
                         >
                             <svg
                                 aria-hidden="true"
@@ -129,7 +129,7 @@ const NavBar = () => {
                             />
                             <Link
                                 onClick={logOut}
-                                className="btn bg-lightBtn hover:bg-lightBtnHover dark:bg-darkBtn hover:dark:bg-darkBtnHover px-6 text-white hover:text-black hover:font-bold text-lg font-semibold rounded-xl"
+                                className="btn bg-lightBtn hover:bg-lightBtnHover dark:bg-darkBtn hover:dark:bg-darkBtnHover px-6 text-black hover:text-black hover:font-bold text-lg font-semibold rounded-xl border-none'"
                             >
                                 Logout <BiLogOut />
                             </Link>
@@ -144,7 +144,7 @@ const NavBar = () => {
                             </Link>
                             <Link
                                 to="/auth/signup"
-                                className="btn bg-[#5fbbc9] hover:bg-[#e1d1e8] px-6 text-white hover:text-black hover:font-bold text-lg font-semibold rounded-xl"
+                                className="btn bg-[#5fbbc9] hover:bg-[#e1d1e8] px-6 text-black hover:text-black hover:font-bold text-lg font-semibold rounded-xl"
                             >
                                 Sign Up
                             </Link>

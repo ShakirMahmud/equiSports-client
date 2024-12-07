@@ -170,7 +170,7 @@ const AddEquipment = () => {
                         <div className="sm:col-span-2">
                             <button
                                 type="submit"
-                                className="btn w-full bg-lightBtn hover:bg-lightBtnHover dark:bg-darkBtn dark:hover:bg-darkBtnHover text-darkBtnText dark:text-white text-lg font-medium py-2.5 rounded-md"
+                                className="btn w-full bg-lightBtn hover:bg-lightBtnHover dark:bg-darkBtn dark:hover:bg-darkBtnHover text-darkBtnText dark:text-darkBtnText text-lg font-medium py-2.5 rounded-md"
                             >
                                 Submit
                             </button>
