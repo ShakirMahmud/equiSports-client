@@ -9,31 +9,43 @@ import StoreLocationMap from '../components/StoreLocationMap';
 
 const HomeLayout = () => {
     return (
-        <div>
-            <header className='sticky top-0 z-50 backdrop-blur bg-white/80 transition-all duration-300'>
+        <div className="bg-lightBg dark:bg-darkBg transition-colors duration-300">
+            {/* Header */}
+            <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
                 <NavBar />
             </header>
-            <main >
+
+            {/* Main Content */}
+            <main className="transition-all duration-300">
                 <section>
                     <Banner />
                 </section>
-                <section className='w-4/5 mx-auto'>
+
+                {/* Category Buttons Section */}
+                <section className="w-4/5 mx-auto">
                     <CategoryBtns />
                 </section>
-                <section className='w-11/12 mx-auto'>
+
+                {/* Testimonials Section */}
+                <section className="">
                     <Testimonials />
                 </section>
+
+                {/* Store Location Map Section */}
                 <section>
                     <StoreLocationMap />
                 </section>
+
+                {/* Outlet for nested routes */}
                 <Outlet />
             </main>
-            <footer>
+
+            {/* Footer */}
+            <footer className="bg-footerLightBg dark:bg-footerDarkBg transition-all duration-300">
                 <Footer />
             </footer>
         </div>
     );
 };
-
 
 export default HomeLayout;

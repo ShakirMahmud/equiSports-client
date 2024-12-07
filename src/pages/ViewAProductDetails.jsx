@@ -47,17 +47,17 @@ const ViewAProductDetails = () => {
 
     return (
         <div>
-            <div className='sticky top-0 z-50 backdrop-blur bg-white/80 transition-all duration-300'>
+            <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
                 <NavBar />
-            </div>
-            <div className="bg-gray-100 min-h-screen">
+            </header>
+            <div className="bg-lightBg dark:bg-darkBg min-h-screen">
                 <div className="container mx-auto px-4 py-8 lg:flex lg:gap-6">
                     {/* Left Side: Product List */}
                     <div
-                        className="lg:w-1/3 bg-white rounded-lg shadow-lg lg:overflow-y-auto lg:max-h-screen mb-6 lg:mb-0"
+                        className="lg:w-1/3 bg-lightCard dark:bg-darkCard rounded-lg shadow-lg lg:overflow-y-auto lg:max-h-screen mb-6 lg:mb-0"
                         style={{ maxHeight: 'calc(100vh - 120px)' }}
                     >
-                        <h2 className="text-lg font-bold text-gray-800 px-4 py-3 border-b border-gray-200 lg:block hidden">
+                        <h2 className="text-lg font-bold text-lightText dark:text-darkText px-4 py-3 border-b border-gray-200 lg:block hidden">
                             Products
                         </h2>
                         <div className="flex lg:block lg:flex-col lg:space-y-2 overflow-x-auto lg:overflow-hidden space-x-4 lg:space-x-0 px-4 py-3">
@@ -65,7 +65,7 @@ const ViewAProductDetails = () => {
                                 <div
                                     key={product._id}
                                     className={`flex-shrink-0 w-48 lg:w-auto lg:flex lg:items-center p-4 cursor-pointer border ${selectedProduct._id === product._id
-                                        ? 'border-blue-500 bg-blue-50'
+                                        ? 'border-blue-500 '
                                         : 'border-gray-200'
                                         } hover:shadow-md transition rounded-lg`}
                                     onClick={() => handleProductClick(product)}
@@ -76,10 +76,10 @@ const ViewAProductDetails = () => {
                                         className="w-16 h-16 object-cover rounded lg:mr-4"
                                     />
                                     <div className="ml-4 lg:ml-0">
-                                        <h2 className="text-gray-800 font-semibold text-sm lg:text-base">
+                                        <h2 className="text-lightText dark:text-darkText font-semibold text-sm lg:text-base">
                                             {product.itemName}
                                         </h2>
-                                        <p className="text-gray-600 text-xs lg:text-sm">${product.price}</p>
+                                        <p className="text-subtitleText dark:text-darkText text-xs lg:text-sm">${product.price}</p>
                                         <CustomStars rating={product.rating} />
                                     </div>
                                 </div>
@@ -88,9 +88,9 @@ const ViewAProductDetails = () => {
                     </div>
 
                     {/* Right Side: Product Details */}
-                    <div className="lg:w-2/3 bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div className="lg:w-2/3 bg-lightCard dark:bg-darkCard rounded-lg shadow-lg overflow-hidden">
                         {/* Product Image */}
-                        <div className="w-full h-64 sm:h-96 bg-gray-100 flex justify-center items-center">
+                        <div className="w-full h-64 sm:h-96 bg-gray-100 dark:bg-gray-700 flex justify-center items-center">
                             <img
                                 src={selectedProduct.image}
                                 alt={selectedProduct.itemName}
@@ -100,55 +100,55 @@ const ViewAProductDetails = () => {
 
                         {/* Product Details */}
                         <div className="p-6">
-                            <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
+                            <h1 className="text-2xl sm:text-3xl font-bold text-lightText dark:text-darkText mb-4">
                                 {selectedProduct.itemName}
                             </h1>
-                            <p className="text-sm sm:text-base text-gray-600 mb-6">
+                            <p className="text-sm sm:text-base text-subtitleText dark:text-darkText mb-6">
                                 {selectedProduct.description}
                             </p>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                                 {/* Category */}
                                 <div>
-                                    <h2 className="font-semibold text-gray-700">Category:</h2>
-                                    <p className="text-gray-600">{selectedProduct.categoryName}</p>
+                                    <h2 className="font-semibold text-lightText dark:text-darkText">Category:</h2>
+                                    <p className="text-gray-600 dark:text-darkText">{selectedProduct.categoryName}</p>
                                 </div>
 
                                 {/* Price */}
                                 <div>
-                                    <h2 className="font-semibold text-gray-700">Price:</h2>
-                                    <p className="text-gray-600">${selectedProduct.price}</p>
+                                    <h2 className="font-semibold text-lightText dark:text-darkText">Price:</h2>
+                                    <p className="text-priceText">${selectedProduct.price}</p>
                                 </div>
 
                                 {/* Rating */}
                                 <div>
-                                    <h2 className="font-semibold text-gray-700">Rating:</h2>
+                                    <h2 className="font-semibold text-lightText dark:text-darkText">Rating:</h2>
                                     <CustomStars rating={selectedProduct.rating} />
                                 </div>
 
                                 {/* Stock Status */}
                                 <div>
-                                    <h2 className="font-semibold text-gray-700">Stock:</h2>
-                                    <p className="text-gray-600">{selectedProduct.stockStatus} items available</p>
+                                    <h2 className="font-semibold text-lightText dark:text-darkText">Stock:</h2>
+                                    <p className="text-gray-600 dark:text-darkText">{selectedProduct.stockStatus} items available</p>
                                 </div>
 
                                 {/* Customization */}
                                 <div className="sm:col-span-2">
-                                    <h2 className="font-semibold text-gray-700">Customization:</h2>
-                                    <p className="text-gray-600">{selectedProduct.customization}</p>
+                                    <h2 className="font-semibold text-lightText dark:text-darkText">Customization:</h2>
+                                    <p className="text-gray-600 dark:text-darkText">{selectedProduct.customization}</p>
                                 </div>
 
                                 {/* Processing Time */}
                                 <div className="sm:col-span-2">
-                                    <h2 className="font-semibold text-gray-700">Processing Time:</h2>
-                                    <p className="text-gray-600">{selectedProduct.processingTime}</p>
+                                    <h2 className="font-semibold  text-lightText dark:text-darkText">Processing Time:</h2>
+                                    <p className="text-gray-600 dark:text-darkText">{selectedProduct.processingTime}</p>
                                 </div>
                             </div>
 
                             {/* User Info */}
                             <div className="border-t pt-4">
-                                <h2 className="font-semibold text-gray-700">Added By:</h2>
-                                <p className="text-gray-600">
+                                <h2 className="font-semibold text-lightText dark:text-darkText">Added By:</h2>
+                                <p className="text-gray-600 dark:text-darkText">
                                     {selectedProduct.userName} ({selectedProduct.userEmail})
                                 </p>
                             </div>
@@ -156,7 +156,9 @@ const ViewAProductDetails = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <footer className="bg-footerLightBg dark:bg-footerDarkBg transition-all duration-300">
+                <Footer />
+            </footer>
         </div>
     );
 };

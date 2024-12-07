@@ -48,16 +48,16 @@ const AddEquipment = () => {
 
     return (
         <div>
-            <div className='sticky top-0 z-50 backdrop-blur bg-white/80 transition-all duration-300'>
+            <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
                 <NavBar />
-            </div>
-            <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-                <div className="container mx-auto bg-white rounded-lg shadow-md p-6">
-                    <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Add New Equipment</h2>
+            </header>
+            <div className="min-h-screen bg-lightBg dark:bg-darkBg py-8 px-4 sm:px-6 lg:px-8">
+                <div className="container mx-auto bg-lightCard dark:bg-darkCard rounded-lg shadow-md p-6">
+                    <h2 className="text-3xl font-semibold text-lightText dark:text-darkText mb-6 text-center">Add New Equipment</h2>
                     <form className="grid grid-cols-1 sm:grid-cols-2 gap-6" onSubmit={handleSubmit}>
                         {/* Image */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Image URL</label>
+                            <label className="block text-sm font-medium text-lightText dark:text-darkText mb-2">Image URL</label>
                             <input
                                 type="text"
                                 name="image"
@@ -67,7 +67,7 @@ const AddEquipment = () => {
                         </div>
                         {/* Item Name */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Item Name</label>
+                            <label className="block text-sm font-medium text-lightText dark:text-darkText mb-2">Item Name</label>
                             <input
                                 type="text"
                                 name="itemName"
@@ -77,7 +77,7 @@ const AddEquipment = () => {
                         </div>
                         {/* Category Name */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Category Name</label>
+                            <label className="block text-sm font-medium text-lightText dark:text-darkText mb-2">Category Name</label>
                             <input
                                 type="text"
                                 name="categoryName"
@@ -87,7 +87,7 @@ const AddEquipment = () => {
                         </div>
                         {/* Description */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                            <label className="block text-sm font-medium text-lightText dark:text-darkText mb-2">Description</label>
                             <textarea
                                 name="description"
                                 className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
@@ -96,7 +96,7 @@ const AddEquipment = () => {
                         </div>
                         {/* Price */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Price</label>
+                            <label className="block text-sm font-medium text-lightText dark:text-darkText mb-2">Price</label>
                             <input
                                 type="text"
                                 name="price"
@@ -106,7 +106,7 @@ const AddEquipment = () => {
                         </div>
                         {/* Rating */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                            <label className="block text-sm font-medium text-lightText dark:text-darkText mb-2">Rating</label>
                             <input
                                 type="text"
                                 name="rating"
@@ -116,7 +116,7 @@ const AddEquipment = () => {
                         </div>
                         {/* Customization */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Customization</label>
+                            <label className="block text-sm font-medium text-lightText dark:text-darkText mb-2">Customization</label>
                             <input
                                 type="text"
                                 name="customization"
@@ -126,7 +126,7 @@ const AddEquipment = () => {
                         </div>
                         {/* Processing Time */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Processing Time</label>
+                            <label className="block text-sm font-medium text-lightText dark:text-darkText mb-2">Processing Time</label>
                             <input
                                 type="text"
                                 name="processingTime"
@@ -136,7 +136,7 @@ const AddEquipment = () => {
                         </div>
                         {/* Stock Status */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Stock Status</label>
+                            <label className="block text-sm font-medium text-lightText dark:text-darkText mb-2">Stock Status</label>
                             <input
                                 type="text"
                                 name="stockStatus"
@@ -146,7 +146,7 @@ const AddEquipment = () => {
                         </div>
                         {/* User Email */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">User Email</label>
+                            <label className="block text-sm font-medium text-lightText dark:text-darkText mb-2">User Email</label>
                             <input
                                 type="text"
                                 name="userEmail"
@@ -157,7 +157,7 @@ const AddEquipment = () => {
                         </div>
                         {/* User Name */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">User Name</label>
+                            <label className="block text-sm font-medium text-lightText dark:text-darkText mb-2">User Name</label>
                             <input
                                 type="text"
                                 name="userName"
@@ -170,7 +170,7 @@ const AddEquipment = () => {
                         <div className="sm:col-span-2">
                             <button
                                 type="submit"
-                                className="btn w-full bg-[#65b5b4] hover:bg-[#649191] text-white text-lg font-medium py-2.5 rounded-md"
+                                className="btn w-full bg-lightBtn hover:bg-lightBtnHover dark:bg-darkBtn dark:hover:bg-darkBtnHover text-darkBtnText dark:text-white text-lg font-medium py-2.5 rounded-md"
                             >
                                 Submit
                             </button>
@@ -178,9 +178,9 @@ const AddEquipment = () => {
                     </form>
                 </div>
             </div>
-            <div>
+            <footer className="bg-footerLightBg dark:bg-footerDarkBg transition-all duration-300">
                 <Footer />
-            </div>
+            </footer>
         </div>
     );
 };

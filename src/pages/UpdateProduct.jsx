@@ -63,19 +63,19 @@ const UpdateProduct = () => {
 
     return (
         <div>
-            <div className='sticky top-0 z-50 backdrop-blur bg-white/80 transition-all duration-300'>
+            <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
                 <NavBar />
-            </div>
-            <div className="bg-gray-50 min-h-screen">
+            </header>
+            <div className="bg-lightBg dark:bg-darkBg min-h-screen">
                 <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
-                    <div className="bg-white p-6 rounded-lg shadow-lg">
-                        <h2 className="text-3xl font-semibold text-center mb-8">
+                    <div className="bg-lightCard dark:bg-darkCard p-6 rounded-lg shadow-lg">
+                        <h2 className="text-3xl font-semibold text-center mb-8 text-lightText dark:text-darkText">
                             Update Product
                         </h2>
                         <form className="grid grid-cols-1 sm:grid-cols-2 gap-6" onSubmit={handleSubmit}>
                             {/* Image */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Image URL</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Image URL</label>
                                 <input
                                     type="text"
                                     name="image"
@@ -86,7 +86,7 @@ const UpdateProduct = () => {
 
                             {/* Item Name */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Item Name</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Item Name</label>
                                 <input
                                     type="text"
                                     name="itemName"
@@ -97,7 +97,7 @@ const UpdateProduct = () => {
 
                             {/* Category Name */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Category Name</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Category Name</label>
                                 <input
                                     type="text"
                                     name="categoryName"
@@ -108,7 +108,7 @@ const UpdateProduct = () => {
 
                             {/* Description */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Description</label>
                                 <textarea
                                     name="description"
                                     className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
@@ -118,7 +118,7 @@ const UpdateProduct = () => {
 
                             {/* Price */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Price</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Price</label>
                                 <input
                                     type="text"
                                     name="price"
@@ -129,7 +129,7 @@ const UpdateProduct = () => {
 
                             {/* Rating */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Rating</label>
                                 <input
                                     type="text"
                                     name="rating"
@@ -140,7 +140,7 @@ const UpdateProduct = () => {
 
                             {/* Customization */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Customization</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Customization</label>
                                 <input
                                     type="text"
                                     name="customization"
@@ -151,7 +151,7 @@ const UpdateProduct = () => {
 
                             {/* Processing Time */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Processing Time</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Processing Time</label>
                                 <input
                                     type="text"
                                     name="processingTime"
@@ -162,7 +162,7 @@ const UpdateProduct = () => {
 
                             {/* Stock Status */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Stock Status</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Stock Status</label>
                                 <input
                                     type="text"
                                     name="stockStatus"
@@ -173,7 +173,7 @@ const UpdateProduct = () => {
 
                             {/* User Email */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">User Email</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">User Email</label>
                                 <input
                                     type="text"
                                     name="userEmail"
@@ -185,7 +185,7 @@ const UpdateProduct = () => {
 
                             {/* User Name */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">User Name</label>
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">User Name</label>
                                 <input
                                     type="text"
                                     name="userName"
@@ -199,7 +199,7 @@ const UpdateProduct = () => {
                             <div className="sm:col-span-2">
                                 <button
                                     type="submit"
-                                    className="btn w-full bg-[#65b5b4] hover:bg-[#649191] text-white text-lg font-medium py-2.5 rounded-md"
+                                    className="btn w-full bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-darkBtnText text-lg font-medium py-2.5 rounded-md"
                                 >
                                     Submit
                                 </button>
@@ -208,7 +208,9 @@ const UpdateProduct = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <footer className="bg-footerLightBg dark:bg-footerDarkBg transition-all duration-300">
+                <Footer />
+            </footer>
         </div>
     );
 };

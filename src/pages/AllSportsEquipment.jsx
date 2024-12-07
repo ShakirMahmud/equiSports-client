@@ -47,21 +47,21 @@ const AllSportsEquipment = () => {
     }
 
     return (
-        <div>
+        <div className="bg-lightBg dark:bg-darkBg">
             {/* Navbar */}
-            <div className="sticky top-0 z-50 backdrop-blur bg-white/80 transition-all duration-300">
+            <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
                 <NavBar />
-            </div>
+            </header>
 
             {/* Main content */}
             <div className="w-11/12 md:w-4/5 mx-auto my-12">
                 <div className="flex flex-col md:flex-row md:justify-between gap-4">
-                    <h2 className="text-2xl md:text-3xl font-medium">
+                    <h2 className="text-2xl md:text-3xl font-medium text-lightText dark:text-darkText">
                         Total Sports Equipment: {products.length}
                     </h2>
                     <button
                         onClick={handleSort}
-                        className="btn bg-[#649191] flex items-center gap-2 text-white text-lg"
+                        className="btn bg-lightBtn dark:bg-darkBtn flex items-center gap-2 text-black text-lg hover:bg-lightBtnHover dark:hover:bg-darkBtnHover focus:ring-4 focus:outline-none focus:ring-orange-300"
                     >
                         Sort by Price{" "}
                         {!isSortedDesc ? <FaSortAmountDown /> : <FaSortAmountDownAlt />}
@@ -73,17 +73,17 @@ const AllSportsEquipment = () => {
                     <table className="table w-full">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Added By</th>
-                                <th></th>
+                                <th className="text-lightText dark:text-darkText">Name</th>
+                                <th className="text-lightText dark:text-darkText">Category</th>
+                                <th className="text-lightText dark:text-darkText">Price</th>
+                                <th className="text-lightText dark:text-darkText">Added By</th>
+                                <th className="text-lightText dark:text-darkText"></th>
                             </tr>
                         </thead>
                         <tbody>
                             {products.map((product) => (
-                                <tr key={product._id}>
-                                    <td>
+                                <tr key={product._id} className="border-b border-cardBorder dark:border-cardBorder">
+                                    <td className="text-lightText dark:text-darkText">
                                         <div className="flex items-center gap-8">
                                             <div className="avatar">
                                                 <div className="mask mask-squircle h-24 w-24">
@@ -102,14 +102,14 @@ const AllSportsEquipment = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td className="text-lightText dark:text-darkText">
                                         {product.categoryName}
                                         <br />
                                         <span className="badge badge-ghost badge-sm">
                                             {product.customization}
                                         </span>
                                     </td>
-                                    <td>{product.price}$</td>
+                                    <td className="text-lightText dark:text-darkText">{product.price}$</td>
                                     <td className="flex flex-col">
                                         <div className="avatar">
                                             <div className="mask mask-squircle h-12 w-12 rounded-full">
@@ -128,7 +128,7 @@ const AllSportsEquipment = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="text-sm opacity-50">
+                                        <div className="text-sm opacity-50 dark:text-white">
                                             {allUsers.find(
                                                 (user) => user.email === product.userEmail
                                             )?.email}
@@ -139,7 +139,7 @@ const AllSportsEquipment = () => {
                                             onClick={() =>
                                                 navigate(`/product/${product._id}`)
                                             }
-                                            className="text-white bg-[#65b5b4] hover:bg-[#649191] focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-base px-5 py-2.5 text-center"
+                                            className="text-black bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-base px-5 py-2.5 text-center"
                                         >
                                             + View details
                                         </button>
@@ -147,16 +147,6 @@ const AllSportsEquipment = () => {
                                 </tr>
                             ))}
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th></th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Added By</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
 
@@ -165,7 +155,7 @@ const AllSportsEquipment = () => {
                     {products.map((product) => (
                         <div
                             key={product._id}
-                            className="border rounded-lg p-4 mb-4 shadow-lg bg-white"
+                            className="border rounded-lg p-4 mb-4 shadow-lg bg-lightCard dark:bg-darkCard"
                         >
                             <div className="flex gap-4">
                                 {/* Product Image */}
@@ -179,15 +169,15 @@ const AllSportsEquipment = () => {
 
                                 {/* Product Info */}
                                 <div className="flex-1">
-                                    <h3 className="font-bold text-lg">{product.itemName}</h3>
-                                    <p className="text-sm text-gray-500">
+                                    <h3 className="font-bold text-lg text-lightText dark:text-darkText">{product.itemName}</h3>
+                                    <p className="text-sm text-gray-500 dark:text-gray-300">
                                         Stock: {product.stockStatus}
                                     </p>
-                                    <p className="mt-1">
-                                        <span className="font-medium">Category:</span>{" "}
+                                    <p className="mt-1 dark:text-white">
+                                        <span className="font-medium ">Category:</span>{" "}
                                         {product.categoryName}
                                     </p>
-                                    <p>
+                                    <p className=" dark:text-white">
                                         <span className="font-medium">Price:</span> ${product.price}
                                     </p>
                                 </div>
@@ -209,7 +199,7 @@ const AllSportsEquipment = () => {
                                         />
                                     </div>
                                     {/* User Email */}
-                                    <span className="text-sm text-gray-500">
+                                    <span className="text-sm text-gray-500 dark:text-gray-100">
                                         {allUsers.find(
                                             (user) => user.email === product.userEmail
                                         )?.email}
@@ -220,7 +210,7 @@ const AllSportsEquipment = () => {
                                 <div className="mt-3">
                                     <button
                                         onClick={() => navigate(`/product/${product._id}`)}
-                                        className="btn w-full bg-[#65b5b4] hover:bg-[#649191] text-white"
+                                        className="btn w-full bg-lightBtn dark:bg-darkBtn text-black hover:bg-lightBtnHover dark:hover:bg-darkBtnHover"
                                     >
                                         + View Details
                                     </button>
@@ -232,9 +222,9 @@ const AllSportsEquipment = () => {
             </div>
 
             {/* Footer */}
-            <div>
+            <footer className="bg-footerLightBg dark:bg-footerDarkBg transition-all duration-300">
                 <Footer />
-            </div>
+            </footer>
         </div>
     );
 };

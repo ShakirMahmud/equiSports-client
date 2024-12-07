@@ -8,8 +8,8 @@ import Loading from '../pages/Loading'; // Adjust the import path based on your 
 
 const Banner = () => {
     const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true); // Add loading state
-    const [activeSlide, setActiveSlide] = useState(0); 
+    const [loading, setLoading] = useState(true);
+    const [activeSlide, setActiveSlide] = useState(0);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,12 +17,11 @@ const Banner = () => {
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data);
-                setLoading(false); // Set loading to false when data is loaded
+                setLoading(false);
             })
-            .catch(() => setLoading(false)); // Stop loading in case of error
+            .catch(() => setLoading(false));
     }, []);
 
-    // Slick settings
     const settings = {
         centerMode: true,
         centerPadding: '60px',
@@ -30,7 +29,7 @@ const Banner = () => {
         autoplay: true,
         autoplaySpeed: 3500,
         arrows: false,
-        beforeChange: (current, next) => setActiveSlide(next), // Update active slide
+        beforeChange: (current, next) => setActiveSlide(next),
         responsive: [
             {
                 breakpoint: 768,
@@ -54,34 +53,35 @@ const Banner = () => {
     };
 
     if (loading) {
-        return <Loading />; // Render the loading component while fetching data
+        return <Loading />;
     }
 
     return (
-        <div className="overflow-hidden"> {/* Ensure no horizontal overflow */}
-            <div className="bg-[#f0f5f5] px-20 py-8">
+        <div className="overflow-hidden">
+            <div className="bg-lightBg dark:bg-darkBg px-20 py-8">
                 <h2 className="flex lg:flex-row flex-col text-center items-center gap-2 justify-center">
-                    <span className="text-3xl text-orange-600 font-bold">35% OFF</span>
-                    <span className="text-gray-600 text-xl">
-                        {' '}
+                    <span className="text-3xl text-orange-500 font-bold">35% OFF</span>
+                    <span className="text-subtitleText text-xl">
                         on total order of $120 or more!!
                     </span>
-                    <span className="text-3xl text-orange-600 font-semibold">
+                    <span className="text-3xl text-orange-500 font-semibold">
                         + Free Shipping
                     </span>
                 </h2>
             </div>
-            <div className="bg-[#ececec] py-12 px-8"> {/* Add padding for responsiveness */}
+            <div className="bg-lightCard dark:bg-darkCard py-12 px-8">
                 <Slider {...settings}>
                     {products.map((product, index) => (
                         <div
                             key={product._id}
                             className={`p-8 transition-transform duration-300 ${
                                 index === activeSlide
-                                    ? 'scale-125 z-10' // Make the center card bigger
+                                    ? 'scale-125 z-10'
                                     : 'scale-75'
                             }`}>
-                            <div onClick={() => navigate(`/product/${product._id}`)} className="bg-[#ececec] p-4 text-center flex flex-col justify-center items-center">
+                            <div
+                                onClick={() => navigate(`/product/${product._id}`)}
+                                className="bg-lightCard dark:bg-darkCard p-4 text-center flex flex-col justify-center items-center rounded-lg ">
                                 <img
                                     src={product.image}
                                     alt={product.itemName}
@@ -91,9 +91,13 @@ const Banner = () => {
                                 />
                                 {index === activeSlide && (
                                     <Fade delay={600}>
-                                        <h3 className="text-lg font-semibold mt-2">{product.itemName}</h3>
-                                        <p className="text-gray-500 text-sm">{product.categoryName}</p>
-                                        <p className="text-orange-600 font-bold mt-2">${product.price}</p>
+                                        <h3 className="text-lg font-semibold mt-2 text-lightText dark:text-darkText">
+                                            {product.itemName}
+                                        </h3>
+                                        <p className="text-subtitleText">{product.categoryName}</p>
+                                        <p className="text-priceText font-bold mt-2">
+                                            ${product.price}
+                                        </p>
                                     </Fade>
                                 )}
                             </div>

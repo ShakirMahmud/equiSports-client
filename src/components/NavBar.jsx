@@ -13,29 +13,29 @@ const NavBar = () => {
     const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
     const links = (
-        <div className="flex flex-col lg:flex-row gap-3">
+        <div className={`flex flex-col lg:flex-row gap-3 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
             <li>
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/" className="">Home</NavLink>
             </li>
             <li>
-                <NavLink to="/allSportsEquipment">All Sports Equipment</NavLink>
+                <NavLink to="/allSportsEquipment" className="">All Sports Equipment</NavLink>
             </li>
             {user?.email && (
                 <li>
-                    <NavLink to="/addEquipment">Add Equipment</NavLink>
+                    <NavLink to="/addEquipment" className="">Add Equipment</NavLink>
                 </li>
             )}
             {user?.email && (
                 <li>
-                    <NavLink to="/myEquipmentList">My Equipment List</NavLink>
+                    <NavLink to="/myEquipmentList" className="">My Equipment List</NavLink>
                 </li>
             )}
         </div>
     );
 
     return (
-        <div className="w-full border-2">
-            <div className="navbar  py-4 w-4/5 mx-auto flex flex-col lg:flex-row">
+        <div className="w-full border-b-2 border-gray-200 dark:border-gray-700">
+            <div className="navbar py-4 w-4/5 mx-auto flex flex-col lg:flex-row">
                 {/* MOBILE FIRST ROW */}
                 <div className="w-full flex justify-between items-center lg:hidden">
                     {/* Dropdown for mobile */}
@@ -58,18 +58,20 @@ const NavBar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                            className="menu menu-sm dropdown-content bg-base-100 dark:bg-darkBg rounded-box z-[1] mt-3 w-52 p-2 shadow"
                         >
                             {links}
                         </ul>
                     </div>
+
                     {/* Website Logo */}
                     <Link to="/" className="text-2xl font-bold flex items-center gap-0">
-                        <span className="border-b-4 border-black">
-                            <span className="border-b-4 border-black italic">Equi</span>
+                        <span className="border-b-4 border-black dark:border-white">
+                            <span className="border-b-4 border-black dark:border-white italic">Equi</span>
                         </span>
-                        <span className="font-semibold text-gray-500 italic">Sports</span>
+                        <span className="font-semibold text-gray-500 dark:text-white italic">Sports</span>
                     </Link>
+
                     {/* Dark Mode Toggle */}
                     <button onClick={toggleTheme} className="text-3xl">
                         {isDarkMode ? (
@@ -88,7 +90,7 @@ const NavBar = () => {
                         <button
                             disabled
                             type="button"
-                            className="text-white bg-[#050b36] font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 inline-flex items-center"
+                            className="text-white bg-[#5fbbc9] dark:bg-darkBtn font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 inline-flex items-center"
                         >
                             <svg
                                 aria-hidden="true"
@@ -116,7 +118,7 @@ const NavBar = () => {
                                     data-tooltip-id="my-tooltip-2"
                                     className="w-10 h-10 rounded-full"
                                     src={user?.photoURL}
-                                    alt=""
+                                    alt="User Profile"
                                 />
                             </div>
                             <ReactTooltip
@@ -127,7 +129,7 @@ const NavBar = () => {
                             />
                             <Link
                                 onClick={logOut}
-                                className="btn bg-[#050b36] hover:bg-[#e1d1e8] px-6 text-white hover:text-black hover:font-bold text-lg font-semibold rounded-xl"
+                                className="btn bg-lightBtn hover:bg-lightBtnHover dark:bg-darkBtn hover:dark:bg-darkBtnHover px-6 text-white hover:text-black hover:font-bold text-lg font-semibold rounded-xl"
                             >
                                 Logout <BiLogOut />
                             </Link>
@@ -142,7 +144,7 @@ const NavBar = () => {
                             </Link>
                             <Link
                                 to="/auth/signup"
-                                className="btn bg-[#050b36] hover:bg-[#e1d1e8] px-6 text-white hover:text-black hover:font-bold text-lg font-semibold rounded-xl"
+                                className="btn bg-[#5fbbc9] hover:bg-[#e1d1e8] px-6 text-white hover:text-black hover:font-bold text-lg font-semibold rounded-xl"
                             >
                                 Sign Up
                             </Link>
@@ -153,17 +155,18 @@ const NavBar = () => {
                 {/* DESKTOP VIEW */}
                 <div className="navbar-start hidden lg:flex">
                     <Link to="/" className="text-3xl font-bold flex items-center gap-0">
-                        <span className="border-b-4 border-black">
-                            <span className="border-b-4 border-black italic">Equi</span>
+                        <span className="border-b-4 border-black dark:border-white">
+                            <span className="border-b-4 border-black dark:border-white italic dark:text-white">Equi</span>
                         </span>
-                        <span className="font-semibold text-gray-500 italic">Sports</span>
+                        <span className="font-semibold text-gray-500 dark:text-gray-400 italic">Sports</span>
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="font-bold menu-horizontal px-1">{links}</ul>
+                    <ul className="font-bold menu-horizontal flex gap-5 text-lg">{links}</ul>
                 </div>
-                <div className="navbar-end hidden lg:flex gap-3">
-                    <button onClick={toggleTheme} className="text-3xl">
+                <div className="navbar-end hidden lg:flex items-center gap-5">
+                    {/* Dark Mode Toggle */}
+                    <button onClick={toggleTheme} className="text-2xl">
                         {isDarkMode ? (
                             <span className="text-yellow-600">
                                 <BiSun />
@@ -172,12 +175,12 @@ const NavBar = () => {
                             <MdOutlineDarkMode />
                         )}
                     </button>
-
+                    {/* User Profile and Logout */}
                     {loading ? (
                         <button
                             disabled
                             type="button"
-                            className="text-white bg-[#050b36] font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 inline-flex items-center"
+                            className="text-white bg-[#5fbbc9] dark:bg-darkBtn font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 inline-flex items-center"
                         >
                             <svg
                                 aria-hidden="true"
@@ -199,24 +202,19 @@ const NavBar = () => {
                             Loading...
                         </button>
                     ) : user && user.email ? (
-                        <div className="flex gap-3 items-center justify-center">
+                        <div className="flex gap-3 items-center">
                             <div className="w-12 h-12 bg-card_bg rounded-full flex justify-center items-center">
                                 <img
-                                    data-tooltip-id="my-tooltip-2"
+                                    data-tooltip-id="my-tooltip"
                                     className="w-10 h-10 rounded-full"
                                     src={user?.photoURL}
-                                    alt=""
+                                    alt="User Profile"
                                 />
                             </div>
-                            <ReactTooltip
-                                id="my-tooltip-2"
-                                place="bottom"
-                                variant="info"
-                                content={user?.displayName}
-                            />
+                            <ReactTooltip id="my-tooltip" place="bottom" variant="info" content={user?.displayName} />
                             <Link
                                 onClick={logOut}
-                                className="btn bg-[#050b36] hover:bg-[#e1d1e8] px-6 text-white hover:text-black hover:font-bold text-lg font-semibold rounded-xl"
+                                className="btn bg-lightBtn hover:bg-lightBtnHover dark:bg-darkBtn hover:dark:bg-darkBtnHover px-6 text-black hover:text-black hover:font-bold text-lg font-semibold rounded-xl"
                             >
                                 Logout <BiLogOut />
                             </Link>
@@ -231,13 +229,12 @@ const NavBar = () => {
                             </Link>
                             <Link
                                 to="/auth/signup"
-                                className="btn bg-[#050b36] hover:bg-[#e1d1e8] px-6 text-white hover:text-black hover:font-bold text-lg font-semibold rounded-xl"
+                                className="btn bg-[#5fbbc9] hover:bg-[#e1d1e8] px-6 text-black hover:text-black hover:font-bold text-lg font-semibold rounded-xl"
                             >
                                 Sign Up
                             </Link>
                         </div>
                     )}
-
                 </div>
             </div>
         </div>

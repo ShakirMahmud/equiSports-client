@@ -53,7 +53,7 @@ const MyEquipmentList = () => {
     if (loading) {
         // Display a loading screen while the data is being fetched
         return (
-            <div className="min-h-screen flex items-center justify-center">
+            <div className="min-h-screen flex items-center justify-center bg-lightBg dark:bg-darkBg">
                 <div className="spinner-border text-primary" role="status">
                     <span className="sr-only">Loading...</span>
                 </div>
@@ -62,32 +62,32 @@ const MyEquipmentList = () => {
     }
 
     return (
-        <div>
+        <div className="bg-lightBg dark:bg-darkBg">
             {/* Navbar */}
-            <div className="sticky top-0 z-50 backdrop-blur bg-white/80 transition-all duration-300">
+            <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
                 <NavBar />
-            </div>
+            </header>
 
-            <div className="min-h-screen bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
+            <div className="min-h-screen py-6 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6 text-center">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-lightText dark:text-darkText mb-6 text-center">
                         You added {addByThisUser.length} products
                     </h2>
 
                     {/* Table for larger screens */}
-                    <div className="hidden sm:block overflow-hidden bg-white rounded-lg shadow-lg">
+                    <div className="hidden sm:block overflow-hidden bg-lightCard dark:bg-darkCard rounded-lg shadow-lg">
                         <table className="table-auto w-full">
-                            <thead className="bg-gray-200">
+                            <thead className="bg-gray-200 dark:bg-gray-800">
                                 <tr>
-                                    <th className="px-3 py-3 text-sm font-medium text-gray-700">Name</th>
-                                    <th className="px-3 py-3 text-sm font-medium text-gray-700">Category</th>
-                                    <th className="px-3 py-3 text-sm font-medium text-gray-700">Price</th>
-                                    <th className="px-3 py-3 text-sm font-medium text-gray-700 text-center">Actions</th>
+                                    <th className="px-3 py-3 text-sm font-medium text-gray-700 dark:text-gray-100">Name</th>
+                                    <th className="px-3 py-3 text-sm font-medium text-gray-700 dark:text-gray-100">Category</th>
+                                    <th className="px-3 py-3 text-sm font-medium text-gray-700 dark:text-gray-100">Price</th>
+                                    <th className="px-3 py-3 text-sm font-medium text-gray-700 dark:text-gray-100 text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {addByThisUser.map((product) => (
-                                    <tr key={product._id} className="border-b hover:bg-gray-100 transition">
+                                    <tr key={product._id} className="border-b hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                         <td className="px-3 py-4">
                                             <div className="flex items-center gap-3">
                                                 <div className="avatar">
@@ -96,28 +96,28 @@ const MyEquipmentList = () => {
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <p className="font-medium">{product.itemName}</p>
-                                                    <p className="text-sm text-gray-500">Stock: {product.stockStatus}</p>
+                                                    <p className="font-medium text-lightText dark:text-darkText">{product.itemName}</p>
+                                                    <p className="text-sm text-gray-500 dark:text-subtitleText">Stock: {product.stockStatus}</p>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-3 py-4">
+                                        <td className="px-3 py-4 text-lightText dark:text-darkText">
                                             {product.categoryName}
                                             <br />
                                             <span className="badge badge-ghost badge-sm">{product.customization}</span>
                                         </td>
-                                        <td className="px-3 py-4 font-medium text-gray-800">{product.price}$</td>
+                                        <td className="px-3 py-4 font-medium text-lightText dark:text-darkText">{product.price}$</td>
                                         <td className="px-3 py-4">
                                             <div className="flex flex-wrap justify-center gap-2">
                                                 <button
                                                     onClick={() => navigate(`/product/${product._id}`)}
-                                                    className="btn bg-[#65b5b4] hover:bg-[#649191] text-white text-sm px-4 py-1"
+                                                    className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-black text-sm px-4 py-1"
                                                 >
                                                     View
                                                 </button>
                                                 <button
                                                     onClick={() => navigate(`/products/${product._id}`)}
-                                                    className="btn bg-[#65b5b4] hover:bg-[#649191] text-white text-sm px-4 py-1"
+                                                    className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-black text-sm px-4 py-1"
                                                 >
                                                     Update
                                                 </button>
@@ -141,7 +141,7 @@ const MyEquipmentList = () => {
                         {addByThisUser.map((product) => (
                             <div
                                 key={product._id}
-                                className="p-4 bg-white rounded-lg shadow-md flex flex-col items-center gap-4"
+                                className="p-4 bg-lightCard dark:bg-darkCard rounded-lg shadow-md flex flex-col items-center gap-4"
                             >
                                 {/* Avatar and Name Section */}
                                 <div className="flex flex-col items-center gap-2">
@@ -151,19 +151,19 @@ const MyEquipmentList = () => {
                                         </div>
                                     </div>
                                     <div className="text-center">
-                                        <h3 className="font-semibold text-lg">{product.itemName}</h3>
-                                        <p className="text-sm text-gray-500">Stock: {product.stockStatus}</p>
+                                        <h3 className="font-semibold text-lightText dark:text-darkText text-lg">{product.itemName}</h3>
+                                        <p className="text-sm text-gray-500 dark:text-subtitleText">Stock: {product.stockStatus}</p>
                                     </div>
                                 </div>
 
                                 {/* Product Details */}
                                 <div className="text-center">
                                     <p>
-                                        <span className="font-semibold">Category: </span>
+                                        <span className="font-semibold text-lightText dark:text-darkText">Category: </span>
                                         {product.categoryName}
                                     </p>
                                     <p>
-                                        <span className="font-semibold">Price: </span>
+                                        <span className="font-semibold text-lightText dark:text-darkText">Price: </span>
                                         {product.price}$
                                     </p>
                                 </div>
@@ -172,13 +172,13 @@ const MyEquipmentList = () => {
                                 <div className="flex justify-center gap-2">
                                     <button
                                         onClick={() => navigate(`/product/${product._id}`)}
-                                        className="btn bg-[#65b5b4] hover:bg-[#649191] text-white text-sm px-4 py-1"
+                                        className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-white text-sm px-4 py-1"
                                     >
                                         View
                                     </button>
                                     <button
                                         onClick={() => navigate(`/privateRoute/products/${product._id}`)}
-                                        className="btn bg-[#65b5b4] hover:bg-[#649191] text-white text-sm px-4 py-1"
+                                        className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-white text-sm px-4 py-1"
                                     >
                                         Update
                                     </button>
@@ -198,7 +198,9 @@ const MyEquipmentList = () => {
             </div>
 
             {/* Footer */}
-            <Footer />
+            <footer className="bg-footerLightBg dark:bg-footerDarkBg transition-all duration-300">
+                <Footer />
+            </footer>
         </div>
     );
 };
