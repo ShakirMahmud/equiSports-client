@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Loading from "../pages/Loading"; // Adjust the path based on your project structure
 
 const CategoryBtns = () => {
     const [products, setProducts] = useState([]);
@@ -7,18 +8,20 @@ const CategoryBtns = () => {
     const [selectedCategory, setSelectedCategory] = useState([]);
     const [activeButton, setActiveButton] = useState("all");
     const [currentPage, setCurrentPage] = useState(0);
+    const [loading, setLoading] = useState(true); // Add a loading state
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('https://equi-sports-server-shakir.vercel.app/products')
-            .then((res) => res.json())
-            .then((data) => setProducts(data));
-    }, []);
-
-    useEffect(() => {
-        fetch('https://equi-sports-server-shakir.vercel.app/categories')
-            .then((res) => res.json())
-            .then((data) => setCategories(data));
+        Promise.all([
+            fetch('https://equi-sports-server-shakir.vercel.app/products').then((res) => res.json()),
+            fetch('https://equi-sports-server-shakir.vercel.app/categories').then((res) => res.json()),
+        ])
+            .then(([productsData, categoriesData]) => {
+                setProducts(productsData);
+                setCategories(categoriesData);
+                setLoading(false); // Set loading to false once both datasets are fetched
+            })
+            .catch(() => setLoading(false)); // Ensure loading is set to false even on error
     }, []);
 
     const handleCategoryClick = (category) => {
@@ -42,6 +45,10 @@ const CategoryBtns = () => {
     const categoriesPerPage = 5;
     const visibleCategories = categories.slice(currentPage * categoriesPerPage, (currentPage + 1) * categoriesPerPage);
     const hasMoreCategories = currentPage < Math.floor(categories.length / categoriesPerPage);
+
+    if (loading) {
+        return <Loading />; // Render the loading screen while fetching data
+    }
 
     return (
         <div className="my-12">

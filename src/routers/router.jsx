@@ -9,7 +9,6 @@ import AddEquipment from "../pages/AddEquipment";
 import MyEquipmentList from "../pages/MyEquipmentList";
 import ViewAProductDetails from "../pages/ViewAProductDetails";
 import UpdateProduct from "../pages/UpdateProduct";
-import PrivateRouteLayout from "../layouts/PrivateRouteLayout";
 import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
@@ -32,33 +31,24 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: '/privateRoute',
+        path: '/addEquipment',
         element: <PrivateRoute>
-            <PrivateRouteLayout />
+            <AddEquipment />
+        </PrivateRoute>
+    },
+    {
+        path: '/myEquipmentList',
+        element: <PrivateRoute>
+            <MyEquipmentList />
         </PrivateRoute>,
-        children: [
-            {
-                path: '/privateRoute/addEquipment',
-                element: <PrivateRoute>
-                    <AddEquipment />
-                </PrivateRoute>
-            },
-            {
-                path: '/privateRoute/myEquipmentList',
-                element: <PrivateRoute>
-                    <MyEquipmentList />
-                </PrivateRoute>,
-                loader: () => fetch('https://equi-sports-server-shakir.vercel.app/products')
-            },
-            {
-                path: '/privateRoute/products/:id',
-                element: <PrivateRoute>
-                    <UpdateProduct />
-                </PrivateRoute>,
-                loader: ({ params }) => fetch(`https://equi-sports-server-shakir.vercel.app/products/${params.id}`)
-
-            },
-        ]
+        loader: () => fetch('https://equi-sports-server-shakir.vercel.app/products')
+    },
+    {
+        path: '/products/:id',
+        element: <PrivateRoute>
+            <UpdateProduct />
+        </PrivateRoute>,
+        loader: ({ params }) => fetch(`https://equi-sports-server-shakir.vercel.app/products/${params.id}`)
 
     },
     {

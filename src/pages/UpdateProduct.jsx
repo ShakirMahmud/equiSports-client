@@ -1,12 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import Footer from '../components/Footer';
+import Loading from '../pages/Loading'; // Import the Loading component
 
 const UpdateProduct = () => {
-    const product = useLoaderData() || [];
+    const [loading, setLoading] = useState(true); // Loading state
+    const product = useLoaderData() || {};
     const { user } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (product) {
+            setLoading(false); // Set loading to false once data is loaded
+        }
+    }, [product]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -48,149 +57,158 @@ const UpdateProduct = () => {
             });
     };
 
+    if (loading) {
+        return <Loading />; // Show the Loading component while the product data is loading
+    }
+
     return (
-        <div className="bg-gray-50 min-h-screen">
-            {/* <NavBar /> */}
-            <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                    <h2 className="text-3xl font-semibold text-center mb-8">
-                        Update Product
-                    </h2>
-                    <form className="grid grid-cols-1 sm:grid-cols-2 gap-6" onSubmit={handleSubmit}>
-                        {/* Image */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Image URL</label>
-                            <input
-                                type="text"
-                                name="image"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
-                                defaultValue={product.image}
-                            />
-                        </div>
+        <div>
+            <div className='sticky top-0 z-50 backdrop-blur bg-white/80 transition-all duration-300'>
+                <NavBar />
+            </div>
+            <div className="bg-gray-50 min-h-screen">
+                <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
+                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 className="text-3xl font-semibold text-center mb-8">
+                            Update Product
+                        </h2>
+                        <form className="grid grid-cols-1 sm:grid-cols-2 gap-6" onSubmit={handleSubmit}>
+                            {/* Image */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Image URL</label>
+                                <input
+                                    type="text"
+                                    name="image"
+                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    defaultValue={product.image}
+                                />
+                            </div>
 
-                        {/* Item Name */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Item Name</label>
-                            <input
-                                type="text"
-                                name="itemName"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
-                                defaultValue={product.itemName}
-                            />
-                        </div>
+                            {/* Item Name */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Item Name</label>
+                                <input
+                                    type="text"
+                                    name="itemName"
+                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    defaultValue={product.itemName}
+                                />
+                            </div>
 
-                        {/* Category Name */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Category Name</label>
-                            <input
-                                type="text"
-                                name="categoryName"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
-                                defaultValue={product.categoryName}
-                            />
-                        </div>
+                            {/* Category Name */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Category Name</label>
+                                <input
+                                    type="text"
+                                    name="categoryName"
+                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    defaultValue={product.categoryName}
+                                />
+                            </div>
 
-                        {/* Description */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                            <textarea
-                                name="description"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
-                                defaultValue={product.description}
-                            ></textarea>
-                        </div>
+                            {/* Description */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                                <textarea
+                                    name="description"
+                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    defaultValue={product.description}
+                                ></textarea>
+                            </div>
 
-                        {/* Price */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Price</label>
-                            <input
-                                type="text"
-                                name="price"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
-                                defaultValue={product.price}
-                            />
-                        </div>
+                            {/* Price */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Price</label>
+                                <input
+                                    type="text"
+                                    name="price"
+                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    defaultValue={product.price}
+                                />
+                            </div>
 
-                        {/* Rating */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Rating</label>
-                            <input
-                                type="text"
-                                name="rating"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
-                                defaultValue={product.rating}
-                            />
-                        </div>
+                            {/* Rating */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                                <input
+                                    type="text"
+                                    name="rating"
+                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    defaultValue={product.rating}
+                                />
+                            </div>
 
-                        {/* Customization */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Customization</label>
-                            <input
-                                type="text"
-                                name="customization"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
-                                defaultValue={product.customization}
-                            />
-                        </div>
+                            {/* Customization */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Customization</label>
+                                <input
+                                    type="text"
+                                    name="customization"
+                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    defaultValue={product.customization}
+                                />
+                            </div>
 
-                        {/* Processing Time */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Processing Time</label>
-                            <input
-                                type="text"
-                                name="processingTime"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
-                                defaultValue={product.processingTime}
-                            />
-                        </div>
+                            {/* Processing Time */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Processing Time</label>
+                                <input
+                                    type="text"
+                                    name="processingTime"
+                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    defaultValue={product.processingTime}
+                                />
+                            </div>
 
-                        {/* Stock Status */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Stock Status</label>
-                            <input
-                                type="text"
-                                name="stockStatus"
-                                className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
-                                defaultValue={product.stockStatus}
-                            />
-                        </div>
+                            {/* Stock Status */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Stock Status</label>
+                                <input
+                                    type="text"
+                                    name="stockStatus"
+                                    className="input input-bordered w-full border-gray-300 rounded-md shadow-sm focus:border-[#649191] focus:ring-[#649191]"
+                                    defaultValue={product.stockStatus}
+                                />
+                            </div>
 
-                        {/* User Email */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">User Email</label>
-                            <input
-                                type="text"
-                                name="userEmail"
-                                className="input input-bordered w-full border-gray-300 rounded-md bg-gray-100 text-gray-500"
-                                value={user?.email}
-                                readOnly
-                            />
-                        </div>
+                            {/* User Email */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">User Email</label>
+                                <input
+                                    type="text"
+                                    name="userEmail"
+                                    className="input input-bordered w-full border-gray-300 rounded-md bg-gray-100 text-gray-500"
+                                    value={user?.email}
+                                    readOnly
+                                />
+                            </div>
 
-                        {/* User Name */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">User Name</label>
-                            <input
-                                type="text"
-                                name="userName"
-                                className="input input-bordered w-full border-gray-300 rounded-md bg-gray-100 text-gray-500"
-                                value={user?.displayName}
-                                readOnly
-                            />
-                        </div>
+                            {/* User Name */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">User Name</label>
+                                <input
+                                    type="text"
+                                    name="userName"
+                                    className="input input-bordered w-full border-gray-300 rounded-md bg-gray-100 text-gray-500"
+                                    value={user?.displayName}
+                                    readOnly
+                                />
+                            </div>
 
-                        {/* Submit Button */}
-                        <div className="sm:col-span-2">
-                            <button
-                                type="submit"
-                                className="btn w-full bg-[#65b5b4] hover:bg-[#649191] text-white text-lg font-medium py-2.5 rounded-md"
-                            >
-                                Submit
-                            </button>
-                        </div>
-                    </form>
+                            {/* Submit Button */}
+                            <div className="sm:col-span-2">
+                                <button
+                                    type="submit"
+                                    className="btn w-full bg-[#65b5b4] hover:bg-[#649191] text-white text-lg font-medium py-2.5 rounded-md"
+                                >
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

@@ -3,21 +3,31 @@ import { FaSortAmountDown, FaSortAmountDownAlt } from "react-icons/fa";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import Loading from "../pages/Loading"; // Import Loading component
 
 const AllSportsEquipment = () => {
     const loadedProducts = useLoaderData() || [];
     const [products, setProducts] = useState(loadedProducts);
     const [isSortedDesc, setIsSortedDesc] = useState(false);
-    const navigate = useNavigate();
     const [allUsers, setAllUsers] = useState([]);
+    const [loading, setLoading] = useState(true); // Add loading state
+    const navigate = useNavigate();
 
     useEffect(() => {
+        // Fetch users and set loading to false once data is fetched
         fetch("https://equi-sports-server-shakir.vercel.app/users")
             .then((res) => res.json())
             .then((data) => {
                 setAllUsers(data);
-            });
+                setLoading(false); // Set loading to false once users data is fetched
+            })
+            .catch(() => setLoading(false)); // Handle error and set loading to false
     }, []);
+
+    useEffect(() => {
+        // Set products data once it's loaded from loader
+        setProducts(loadedProducts);
+    }, [loadedProducts]);
 
     // Handle the sorting logic
     const handleSort = async () => {
@@ -31,6 +41,10 @@ const AllSportsEquipment = () => {
             console.error("Error sorting products:", error);
         }
     };
+
+    if (loading) {
+        return <Loading />; // Render loading screen while fetching data
+    }
 
     return (
         <div>
@@ -148,74 +162,73 @@ const AllSportsEquipment = () => {
 
                 {/* Cards for mobile */}
                 <div className="block md:hidden mt-6">
-    {products.map((product) => (
-        <div
-            key={product._id}
-            className="border rounded-lg p-4 mb-4 shadow-lg bg-white"
-        >
-            <div className="flex gap-4">
-                {/* Product Image */}
-                <div className="w-24 h-24">
-                    <img
-                        src={product.image}
-                        alt={product.itemName}
-                        className="w-full h-full object-cover rounded"
-                    />
-                </div>
+                    {products.map((product) => (
+                        <div
+                            key={product._id}
+                            className="border rounded-lg p-4 mb-4 shadow-lg bg-white"
+                        >
+                            <div className="flex gap-4">
+                                {/* Product Image */}
+                                <div className="w-24 h-24">
+                                    <img
+                                        src={product.image}
+                                        alt={product.itemName}
+                                        className="w-full h-full object-cover rounded"
+                                    />
+                                </div>
 
-                {/* Product Info */}
-                <div className="flex-1">
-                    <h3 className="font-bold text-lg">{product.itemName}</h3>
-                    <p className="text-sm text-gray-500">
-                        Stock: {product.stockStatus}
-                    </p>
-                    <p className="mt-1">
-                        <span className="font-medium">Category:</span>{" "}
-                        {product.categoryName}
-                    </p>
-                    <p>
-                        <span className="font-medium">Price:</span> ${product.price}
-                    </p>
-                </div>
-            </div>
+                                {/* Product Info */}
+                                <div className="flex-1">
+                                    <h3 className="font-bold text-lg">{product.itemName}</h3>
+                                    <p className="text-sm text-gray-500">
+                                        Stock: {product.stockStatus}
+                                    </p>
+                                    <p className="mt-1">
+                                        <span className="font-medium">Category:</span>{" "}
+                                        {product.categoryName}
+                                    </p>
+                                    <p>
+                                        <span className="font-medium">Price:</span> ${product.price}
+                                    </p>
+                                </div>
+                            </div>
 
-            {/* User Info and Button */}
-            <div className="mt-4">
-                <div className="flex items-center gap-2">
-                    {/* User Avatar */}
-                    <div className="w-10 h-10 rounded-full overflow-hidden">
-                        <img
-                            src={
-                                allUsers.find(
-                                    (user) => user.email === product.userEmail
-                                )?.photo
-                            }
-                            alt="User"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                    {/* User Email */}
-                    <span className="text-sm text-gray-500">
-                        {allUsers.find(
-                            (user) => user.email === product.userEmail
-                        )?.email}
-                    </span>
-                </div>
+                            {/* User Info and Button */}
+                            <div className="mt-4">
+                                <div className="flex items-center gap-2">
+                                    {/* User Avatar */}
+                                    <div className="w-10 h-10 rounded-full overflow-hidden">
+                                        <img
+                                            src={
+                                                allUsers.find(
+                                                    (user) => user.email === product.userEmail
+                                                )?.photo
+                                            }
+                                            alt="User"
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                    {/* User Email */}
+                                    <span className="text-sm text-gray-500">
+                                        {allUsers.find(
+                                            (user) => user.email === product.userEmail
+                                        )?.email}
+                                    </span>
+                                </div>
 
-                {/* Button on Next Line */}
-                <div className="mt-3">
-                    <button
-                        onClick={() => navigate(`/product/${product._id}`)}
-                        className="btn w-full bg-[#65b5b4] hover:bg-[#649191] text-white"
-                    >
-                        + View Details
-                    </button>
+                                {/* Button on Next Line */}
+                                <div className="mt-3">
+                                    <button
+                                        onClick={() => navigate(`/product/${product._id}`)}
+                                        className="btn w-full bg-[#65b5b4] hover:bg-[#649191] text-white"
+                                    >
+                                        + View Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-            </div>
-        </div>
-    ))}
-</div>
-
             </div>
 
             {/* Footer */}

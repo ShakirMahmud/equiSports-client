@@ -4,16 +4,22 @@ import { Fade } from 'react-awesome-reveal';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../pages/Loading'; // Adjust the import path based on your project structure
 
 const Banner = () => {
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true); // Add loading state
     const [activeSlide, setActiveSlide] = useState(0); 
     const navigate = useNavigate();
 
     useEffect(() => {
         fetch('https://equi-sports-server-shakir.vercel.app/products')
             .then((res) => res.json())
-            .then((data) => setProducts(data));
+            .then((data) => {
+                setProducts(data);
+                setLoading(false); // Set loading to false when data is loaded
+            })
+            .catch(() => setLoading(false)); // Stop loading in case of error
     }, []);
 
     // Slick settings
@@ -47,10 +53,14 @@ const Banner = () => {
         ],
     };
 
+    if (loading) {
+        return <Loading />; // Render the loading component while fetching data
+    }
+
     return (
         <div className="overflow-hidden"> {/* Ensure no horizontal overflow */}
             <div className="bg-[#f0f5f5] px-20 py-8">
-                <h2 className="flex items-center gap-2 justify-center">
+                <h2 className="flex lg:flex-row flex-col text-center items-center gap-2 justify-center">
                     <span className="text-3xl text-orange-600 font-bold">35% OFF</span>
                     <span className="text-gray-600 text-xl">
                         {' '}

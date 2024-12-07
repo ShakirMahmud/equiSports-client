@@ -10,29 +10,30 @@ import StoreLocationMap from '../components/StoreLocationMap';
 const HomeLayout = () => {
     return (
         <div>
-            <header>
+            <header className='sticky top-0 z-50 backdrop-blur bg-white/80 transition-all duration-300'>
                 <NavBar />
             </header>
             <main >
                 <section>
-                    <Banner/>
+                    <Banner />
                 </section>
                 <section className='w-4/5 mx-auto'>
-                    <CategoryBtns/>
+                    <CategoryBtns />
                 </section>
                 <section className='w-11/12 mx-auto'>
-                    <Testimonials/>
+                    <Testimonials />
                 </section>
                 <section>
-                    <StoreLocationMap/>
+                    <StoreLocationMap />
                 </section>
                 <Outlet />
             </main>
             <footer>
-                <Footer/>
+                <Footer />
             </footer>
         </div>
     );
 };
+
 
 export default HomeLayout;
