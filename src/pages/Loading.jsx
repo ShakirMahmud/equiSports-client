@@ -1,8 +1,9 @@
-import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Loading = () => {
+    const location = useLocation();
     return (
-        <div className='flex min-h-screen justify-center items-center dark:bg-slate-800'>
+        <div className={`flex  justify-center items-center ${ location.pathname === '/' ? 'dark:bg-transparent max-h-screen' : 'dark:bg-slate-700 min-h-screen'} `}>
             <span className="loading loading-spinner text-primary"></span>
             <span className="loading loading-spinner text-secondary"></span>
             <span className="loading loading-spinner text-accent"></span>

@@ -51,6 +51,3 @@ The server is built using Express.js, which connects to a MongoDB database via M
   - `https://equi-sports-server-shakir.vercel.app/categories`: Fetch unique product categories.
   - `https://equi-sports-server-shakir.vercel.app/products/category/:category`: Fetch products filtered by category.
   - `https://equi-sports-server-shakir.vercel.app/users`: Manage user data (GET, POST).
-
-
-

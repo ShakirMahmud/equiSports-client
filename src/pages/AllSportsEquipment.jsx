@@ -42,7 +42,7 @@ const AllSportsEquipment = () => {
     };
 
     if (loading) {
-        return <Loading />; // Render loading screen while fetching data
+        return <Loading />; 
     }
 
     return (
