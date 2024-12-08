@@ -72,7 +72,6 @@ const SignUp = () => {
         createNewUser(email, password)
             .then((res) => {
                 setUser(res.user);
-                console.log("User created successfully at firebase", res.user);
                 setError("");
                 const newUser = { name, photo, email };
                 postToDB(newUser);
@@ -96,8 +95,6 @@ const SignUp = () => {
         signInWithGoogle()
             .then((res) => {
                 setUser(res.user);
-                console.log("User signed up with google successfully at firebase", res.user);
-
                 const newUser = { name: res.user.displayName, photo: res.user.photoURL, email: res.user.email };
                 postToDB(newUser);
 
