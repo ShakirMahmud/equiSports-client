@@ -60,149 +60,88 @@ const MyEquipmentList = () => {
 
     return (
         <div className="bg-lightBg dark:bg-darkBg">
-            <Helmet>
-                <title>My Equipment - EquiSports</title>
-            </Helmet>
-            {/* Navbar */}
-            <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
-                <NavBar />
-            </header>
-
-            <div className="min-h-screen py-6 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-lightText dark:text-darkText mb-6 text-center">
-                        You added {addByThisUser.length} products
-                    </h2>
-
-                    {/* Table for larger screens */}
-                    <div className="hidden sm:block overflow-hidden bg-lightCard dark:bg-darkCard rounded-lg shadow-lg">
-                        <table className="table-auto w-full">
-                            <thead className="bg-gray-200 dark:bg-gray-800">
-                                <tr>
-                                    <th className="px-3 py-3 text-sm font-medium text-gray-700 dark:text-gray-100">Name</th>
-                                    <th className="px-3 py-3 text-sm font-medium text-gray-700 dark:text-gray-100">Category</th>
-                                    <th className="px-3 py-3 text-sm font-medium text-gray-700 dark:text-gray-100">Price</th>
-                                    <th className="px-3 py-3 text-sm font-medium text-gray-700 dark:text-gray-100 text-center">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {addByThisUser.map((product) => (
-                                    <tr key={product._id} className="border-b hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                                        <td className="px-3 py-4">
-                                            <div className="flex items-center gap-3">
-                                                <div className="avatar">
-                                                    <div className="mask mask-squircle h-10 w-10">
-                                                        <img src={product.image} alt={product.itemName} />
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <p className="font-medium text-lightText dark:text-darkText">{product.itemName}</p>
-                                                    <p className="text-sm text-gray-500 dark:text-subtitleText">Stock: {product.stockStatus}</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className="px-3 py-4 text-lightText dark:text-darkText">
-                                            {product.categoryName}
-                                            <br />
-                                            <span className="badge badge-ghost badge-sm">{product.customization}</span>
-                                        </td>
-                                        <td className="px-3 py-4 font-medium text-lightText dark:text-darkText">{product.price}$</td>
-                                        <td className="px-3 py-4">
-                                            <div className="flex flex-wrap justify-center gap-2">
-                                                <button
-                                                    onClick={() => navigate(`/product/${product._id}`)}
-                                                    className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-black text-sm px-4 py-1"
-                                                >
-                                                    View
-                                                </button>
-                                                <button
-                                                    onClick={() => navigate(`/products/${product._id}`)}
-                                                    className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-black text-sm px-4 py-1"
-                                                >
-                                                    Update
-                                                </button>
-                                                <button
-                                                    onClick={() => handleDelete(product._id)}
-                                                    className="btn bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-1 flex items-center gap-1"
-                                                >
-                                                    <MdOutlineDeleteOutline className="text-base" />
-                                                    Delete
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+          <Helmet>
+            <title>My Equipment - EquiSports</title>
+          </Helmet>
+          {/* Navbar */}
+          <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
+            <NavBar />
+          </header>
+      
+          <div className="min-h-screen py-6 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-xl sm:text-2xl font-semibold text-lightText dark:text-darkText mb-6 text-center">
+                You added {addByThisUser.length} products
+              </h2>
+      
+              {/* Card Grid Layout */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {addByThisUser.map((product) => (
+                  <div
+                    key={product._id}
+                    className="p-4 bg-lightCard dark:bg-darkCard rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                  >
+                    {/* Product Image */}
+                    <div className="h-48 w-full rounded-lg overflow-hidden">
+                      <img
+                        src={product.image}
+                        alt={product.itemName}
+                        className="w-full h-full object-contain"
+                      />
                     </div>
-
-                    {/* Card layout for small screens */}
-                    <div className="sm:hidden space-y-4">
-                        {addByThisUser.map((product) => (
-                            <div
-                                key={product._id}
-                                className="p-4 bg-lightCard dark:bg-darkCard rounded-lg shadow-md flex flex-col items-center gap-4"
-                            >
-                                {/* Avatar and Name Section */}
-                                <div className="flex flex-col items-center gap-2">
-                                    <div className="avatar">
-                                        <div className="mask mask-squircle h-14 w-14">
-                                            <img src={product.image} alt={product.itemName} />
-                                        </div>
-                                    </div>
-                                    <div className="text-center">
-                                        <h3 className="font-semibold text-lightText dark:text-darkText text-lg">{product.itemName}</h3>
-                                        <p className="text-sm text-gray-500 dark:text-subtitleText">Stock: {product.stockStatus}</p>
-                                    </div>
-                                </div>
-
-                                {/* Product Details */}
-                                <div className="text-center text-lightText dark:text-darkText">
-                                    <p>
-                                        <span className="font-semibold text-lightText dark:text-darkText">Category: </span>
-                                        {product.categoryName}
-                                    </p>
-                                    <p>
-                                        <span className="font-semibold text-lightText dark:text-darkText">Price: </span>
-                                        {product.price}$
-                                    </p>
-                                </div>
-
-                                {/* Buttons */}
-                                <div className="flex justify-center gap-2">
-                                    <button
-                                        onClick={() => navigate(`/product/${product._id}`)}
-                                        className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-black text-sm px-4 py-1"
-                                    >
-                                        View
-                                    </button>
-                                    <button
-                                        onClick={() => navigate(`/products/${product._id}`)}
-                                        className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-black text-sm px-4 py-1"
-                                    >
-                                        Update
-                                    </button>
-                                    <button
-                                        onClick={() => handleDelete(product._id)}
-                                        className="btn bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-1 flex items-center gap-1"
-                                    >
-                                        <MdOutlineDeleteOutline className="text-base" />
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
+      
+                    {/* Product Info */}
+                    <div className="mt-4">
+                      <h3 className="font-semibold text-lg text-lightText dark:text-darkText truncate">
+                        {product.itemName}
+                      </h3>
+                      <p className="text-sm text-gray-500 dark:text-subtitleText mt-1">
+                        Stock: {product.stockStatus}
+                      </p>
+                      <p className="text-lightText dark:text-darkText mt-2">
+                        <span className="font-semibold">Category:</span>{" "}
+                        {product.categoryName}
+                      </p>
+                      <p className="text-priceText mt-1 font-medium">
+                        ${product.price}
+                      </p>
                     </div>
-
-                </div>
+      
+                    {/* Buttons */}
+                    <div className="flex justify-between mt-4">
+                      <button
+                        onClick={() => navigate(`/product/${product._id}`)}
+                        className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-black text-sm px-3 py-1 rounded"
+                      >
+                        View
+                      </button>
+                      <button
+                        onClick={() => navigate(`/products/${product._id}`)}
+                        className="btn bg-lightBtn dark:bg-darkBtn hover:bg-lightBtnHover dark:hover:bg-darkBtnHover text-black text-sm px-3 py-1 rounded"
+                      >
+                        Update
+                      </button>
+                      <button
+                        onClick={() => handleDelete(product._id)}
+                        className="btn bg-red-500 hover:bg-red-600 text-white text-sm px-3 py-1 rounded flex items-center gap-1"
+                      >
+                        <MdOutlineDeleteOutline className="text-base" />
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-
-            {/* Footer */}
-            <footer className="bg-footerLightBg dark:bg-footerDarkBg transition-all duration-300">
-                <Footer />
-            </footer>
+          </div>
+      
+          {/* Footer */}
+          <footer className="bg-footerLightBg dark:bg-footerDarkBg transition-all duration-300">
+            <Footer />
+          </footer>
         </div>
-    );
+      );
+      
 };
 
 export default MyEquipmentList;
