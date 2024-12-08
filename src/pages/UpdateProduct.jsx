@@ -15,7 +15,7 @@ const UpdateProduct = () => {
 
     useEffect(() => {
         if (product) {
-            setLoading(false); // Set loading to false once data is loaded
+            setLoading(false);
         }
     }, [product]);
 
@@ -67,7 +67,7 @@ const UpdateProduct = () => {
     };
 
     if (loading) {
-        return <Loading />; // Show the Loading component while the product data is loading
+        return <Loading />; 
     }
 
     return (

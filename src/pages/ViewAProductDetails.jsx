@@ -3,7 +3,7 @@ import { useNavigate, useLoaderData } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import Footer from '../components/Footer';
-import Loading from '../pages/Loading'; // Import the Loading component
+import Loading from '../pages/Loading'; 
 import { Helmet } from 'react-helmet-async';
 
 // CustomStars Component
@@ -25,7 +25,7 @@ const ViewAProductDetails = () => {
     const initialProduct = useLoaderData() || {};
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(initialProduct);
-    const [loading, setLoading] = useState(true); // Loading state
+    const [loading, setLoading] = useState(true); 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const ViewAProductDetails = () => {
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data);
-                setLoading(false); // Set loading to false once data is loaded
+                setLoading(false); 
             });
     }, []);
 
@@ -43,7 +43,7 @@ const ViewAProductDetails = () => {
     };
 
     if (loading) {
-        return <Loading />; // Show the Loading component while the data is being fetched
+        return <Loading />; 
     }
 
     return (

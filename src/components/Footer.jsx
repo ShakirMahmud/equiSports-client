@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaFacebook, FaGithub, FaReddit } from 'react-icons/fa'; // You can import social media icons here
+import { FaFacebook, FaGithub, FaReddit } from 'react-icons/fa'; 
 
 const Footer = () => {
     return (

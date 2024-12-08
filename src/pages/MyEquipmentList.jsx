@@ -6,12 +6,13 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet-async";
+import Loading from "./Loading";
 
 const MyEquipmentList = () => {
     const allProducts = useLoaderData() || [];
     const { user } = useContext(AuthContext);
     const [addByThisUser, setAddByThisUser] = useState([]);
-    const [loading, setLoading] = useState(true); // Loading state
+    const [loading, setLoading] = useState(true); 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,7 +20,7 @@ const MyEquipmentList = () => {
             (product) => product.userEmail === user?.email
         );
         setAddByThisUser(matchByEmail);
-        setLoading(false); // Set loading to false once data is loaded
+        setLoading(false); 
     }, [allProducts, user?.email]);
 
     const handleDelete = (id) => {
@@ -52,13 +53,8 @@ const MyEquipmentList = () => {
     };
 
     if (loading) {
-        // Display a loading screen while the data is being fetched
         return (
-            <div className="min-h-screen flex items-center justify-center bg-lightBg dark:bg-darkBg">
-                <div className="spinner-border text-primary" role="status">
-                    <span className="sr-only">Loading...</span>
-                </div>
-            </div>
+            <Loading/>
         );
     }
 

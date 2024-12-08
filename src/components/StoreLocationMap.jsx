@@ -7,7 +7,7 @@ import { ThemeContext } from "../provider/ThemeProvider";
 const StoreLocationMap = () => {
     const mapContainerRef = useRef(null);
     const { isDarkMode } = useContext(ThemeContext);
-    const mapRef = useRef(null); // Ref to hold the map instance
+    const mapRef = useRef(null); 
 
     useEffect(() => {
         // Initialize the map only once

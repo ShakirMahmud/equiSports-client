@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Loading from "../pages/Loading"; // Adjust the path based on your project structure
+import Loading from "../pages/Loading"; 
 
 const CategoryBtns = () => {
-    const [limitedProducts, setLimitedProducts] = useState([]); // For initial 6 products
-    const [allProducts, setAllProducts] = useState([]); // For all products (prefetched in background)
+    const [limitedProducts, setLimitedProducts] = useState([]); 
+    const [allProducts, setAllProducts] = useState([]); 
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState([]);
     const [activeButton, setActiveButton] = useState("all");
     const [currentPage, setCurrentPage] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [categoryLoading, setCategoryLoading] = useState(false); // To handle category loading state
+    const [categoryLoading, setCategoryLoading] = useState(false); 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -24,7 +24,6 @@ const CategoryBtns = () => {
                 setLimitedProducts(limitedProductsData);
                 setCategories(categoriesData);
 
-                // Pre-fetch all products in the background
                 fetchAllProducts();
 
                 setLoading(false);
@@ -54,12 +53,12 @@ const CategoryBtns = () => {
         setTimeout(() => {
             setSelectedCategory(allProducts.filter(product => product.categoryName === category));
             setCategoryLoading(false);
-        }, 300); // Adding a slight delay to smoothen user experience
+        }, 300); 
     };
 
     const handleAllProductsClick = () => {
         setActiveButton("all");
-        setSelectedCategory([]); // Reset to show limited products
+        setSelectedCategory([]); 
     };
 
     const handleShowNextClick = () => {
@@ -77,8 +76,6 @@ const CategoryBtns = () => {
     if (loading) {
         return <Loading />;
     }
-
-    // Determine products to display
     const productsToDisplay = selectedCategory.length ? selectedCategory : limitedProducts;
 
     return (
@@ -140,7 +137,7 @@ const CategoryBtns = () => {
             {/* Products Grid */}
             {categoryLoading ? (
                 <div className="flex justify-center mt-8">
-                    <Loading /> {/* Optional: You can customize this */}
+                    <Loading /> 
                 </div>
             ) : (
                 <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3">

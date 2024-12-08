@@ -4,7 +4,7 @@ import { Fade } from 'react-awesome-reveal';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useNavigate } from 'react-router-dom';
-import Loading from '../pages/Loading'; // Adjust the import path based on your project structure
+import Loading from '../pages/Loading';
 
 const Banner = () => {
     const [products, setProducts] = useState([]);

@@ -3,7 +3,7 @@ import { FaSortAmountDown, FaSortAmountDownAlt } from "react-icons/fa";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import Loading from "../pages/Loading"; // Import Loading component
+import Loading from "../pages/Loading"; 
 import { Helmet } from "react-helmet-async";
 
 const AllSportsEquipment = () => {
@@ -11,22 +11,20 @@ const AllSportsEquipment = () => {
     const [products, setProducts] = useState(loadedProducts);
     const [isSortedDesc, setIsSortedDesc] = useState(false);
     const [allUsers, setAllUsers] = useState([]);
-    const [loading, setLoading] = useState(true); // Add loading state
+    const [loading, setLoading] = useState(true); 
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch users and set loading to false once data is fetched
         fetch("https://equi-sports-server-shakir.vercel.app/users")
             .then((res) => res.json())
             .then((data) => {
                 setAllUsers(data);
-                setLoading(false); // Set loading to false once users data is fetched
+                setLoading(false); 
             })
-            .catch(() => setLoading(false)); // Handle error and set loading to false
+            .catch(() => setLoading(false));
     }, []);
 
     useEffect(() => {
-        // Set products data once it's loaded from loader
         setProducts(loadedProducts);
     }, [loadedProducts]);
 
