@@ -156,7 +156,7 @@ const CategoryBtns = () => {
                                 <div className="flex items-center justify-between px-3 py-2 bg-lightBg dark:bg-darkBg">
                                     <span className="font-bold text-priceText">${product.price}</span>
                                     <button
-                                        onClick={() => navigate(`/allSportsEquipment/${product._id}`)}
+                                        onClick={() => navigate(`/product/${product._id}`)}
                                         className="px-3 py-1 text-xs font-semibold text-black/80 uppercase transition-colors duration-300 transform bg-lightBtn hover:bg-lightBtnHover dark:bg-darkBtn dark:hover:bg-darkBtnHover focus:outline-none rounded"
                                     >
                                         View Details
