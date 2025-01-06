@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLoaderData } from 'react-router-dom';
 import NavBar from '../components/NavBar';
-import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+import { FaStar, FaStarHalfAlt, FaRegStar, FaBox, FaCube, FaClock, FaTag, FaUser } from 'react-icons/fa';
 import Footer from '../components/Footer';
 import Loading from '../pages/Loading'; 
 import { Helmet } from 'react-helmet-async';
 
-// CustomStars Component
+// CustomStars Component (remains the same)
 const CustomStars = ({ rating }) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -47,44 +47,50 @@ const ViewAProductDetails = () => {
     }
 
     return (
-        <div>
+        <div className="bg-lightBg dark:bg-darkBg min-h-screen">
             <Helmet>
                 <title>View Product - EquiSports</title>
             </Helmet>
             <header className="sticky top-0 z-50 backdrop-blur bg-navLightBg dark:bg-navDarkBg transition-all duration-300">
                 <NavBar />
             </header>
-            <div className="bg-lightBg dark:bg-darkBg min-h-screen">
-                <div className="container mx-auto px-4 py-8 lg:flex lg:gap-6">
+
+            <div className="container mx-auto px-4 py-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Left Side: Product List */}
-                    <div
-                        className="lg:w-1/3 bg-lightCard dark:bg-darkCard rounded-lg shadow-lg lg:overflow-y-auto lg:max-h-screen mb-6 lg:mb-0"
-                        style={{ maxHeight: 'calc(100vh - 120px)' }}
-                    >
-                        <h2 className="text-lg font-bold text-lightText dark:text-darkText px-4 py-3 border-b border-gray-200 lg:block hidden">
-                            Products
+                    <div className="lg:col-span-1 bg-lightCard dark:bg-darkCard rounded-2xl shadow-lg ">
+                        <h2 className="text-xl font-bold text-lightText dark:text-darkText px-6 py-4 border-b border-gray-200">
+                            Our Products
                         </h2>
-                        <div className="flex lg:block lg:flex-col lg:space-y-2 overflow-x-auto lg:overflow-hidden space-x-4 lg:space-x-0 px-4 py-3">
+                        <div className="max-h-screen overflow-y-auto">
                             {products.map((product) => (
                                 <div
                                     key={product._id}
-                                    className={`flex-shrink-0 w-48 lg:w-auto lg:flex lg:items-center p-4 cursor-pointer border ${selectedProduct._id === product._id
-                                        ? 'border-blue-500 '
-                                        : 'border-gray-200'
-                                        } hover:shadow-md transition rounded-lg`}
+                                    className={`
+                                        flex items-center p-4 cursor-pointer 
+                                        border-b last:border-b-0 
+                                        hover:bg-gray-50 dark:hover:bg-gray-700
+                                        ${selectedProduct._id === product._id 
+                                            ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-200' 
+                                            : 'border-gray-100'}
+                                    `}
                                     onClick={() => handleProductClick(product)}
                                 >
-                                    <img
-                                        src={product.image}
-                                        alt={product.itemName}
-                                        className="w-16 h-16 object-cover rounded lg:mr-4"
-                                    />
-                                    <div className="ml-4 lg:ml-0">
-                                        <h2 className="text-lightText dark:text-darkText font-semibold text-sm lg:text-base">
+                                    <div className="w-20 h-20 flex-shrink-0 mr-4">
+                                        <img
+                                            src={product.image}
+                                            alt={product.itemName}
+                                            className="w-full h-full object-contain rounded"
+                                        />
+                                    </div>
+                                    <div className="flex-grow">
+                                        <h3 className="text-base font-semibold text-lightText dark:text-darkText">
                                             {product.itemName}
-                                        </h2>
-                                        <p className="text-subtitleText dark:text-darkText text-xs lg:text-sm">${product.price}</p>
-                                        <CustomStars rating={product.rating} />
+                                        </h3>
+                                        <div className="flex items-center justify-between mt-2">
+                                            <span className="text-priceText font-bold">${product.price}</span>
+                                            <CustomStars rating={product.rating} />
+                                        </div>
                                     </div>
                                 </div>
                             ))}
@@ -92,60 +98,79 @@ const ViewAProductDetails = () => {
                     </div>
 
                     {/* Right Side: Product Details */}
-                    <div className="lg:w-2/3 bg-lightCard dark:bg-darkCard rounded-lg shadow-lg overflow-hidden">
+                    <div className="lg:col-span-2 bg-lightCard dark:bg-darkCard rounded-2xl shadow-lg overflow-hidden">
                         {/* Product Image */}
-                        <div className="w-full h-64 sm:h-96 bg-gray-100 dark:bg-gray-700 flex justify-center items-center">
+                        <div className="w-full h-[400px] bg-gray-100 dark:bg-gray-700 flex justify-center items-center">
                             <img
                                 src={selectedProduct.image}
                                 alt={selectedProduct.itemName}
-                                className="object-contain w-full h-full"
+                                className="max-w-full max-h-full object-contain"
                             />
                         </div>
 
                         {/* Product Details */}
-                        <div className="p-6">
-                            <h1 className="text-2xl sm:text-3xl font-bold text-lightText dark:text-darkText mb-4">
+                        <div className="p-8">
+                            <h1 className="text-3xl font-bold text-lightText dark:text-darkText mb-4">
                                 {selectedProduct.itemName}
                             </h1>
-                            <p className="text-sm sm:text-base text-subtitleText dark:text-darkText mb-6">
+                            <p className="text-subtitleText dark:text-gray-300 mb-6">
                                 {selectedProduct.description}
                             </p>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                            {/* Detailed Product Info */}
+                            <div className="grid md:grid-cols-2 gap-6">
                                 {/* Category */}
-                                <div>
-                                    <h2 className="font-semibold text-lightText dark:text-darkText">Category:</h2>
-                                    <p className="text-gray-600 dark:text-darkText">{selectedProduct.categoryName}</p>
+                                <div className="flex items-center gap-4">
+                                    <FaBox className="text-accentColor text-2xl" />
+                                    <div>
+                                        <h3 className="font-semibold text-lightText dark:text-darkText">Category</h3>
+                                        <p className="text-subtitleText">{selectedProduct.categoryName}</p>
+                                    </div>
                                 </div>
 
                                 {/* Price */}
-                                <div>
-                                    <h2 className="font-semibold text-lightText dark:text-darkText">Price:</h2>
-                                    <p className="text-priceText">${selectedProduct.price}</p>
+                                <div className="flex items-center gap-4">
+                                    <FaTag className="text-accentColor text-2xl" />
+                                    <div>
+                                        <h3 className="font-semibold text-lightText dark:text-darkText">Price</h3>
+                                        <p className="text-priceText font-bold">${selectedProduct.price}</p>
+                                    </div>
                                 </div>
 
                                 {/* Rating */}
-                                <div>
-                                    <h2 className="font-semibold text-lightText dark:text-darkText">Rating:</h2>
-                                    <CustomStars rating={selectedProduct.rating} />
+                                <div className="flex items-center gap-4">
+                                    <FaStar className="text-accentColor text-2xl" />
+                                    <div>
+                                        <h3 className="font-semibold text-lightText dark:text-darkText">Rating</h3>
+                                        <CustomStars rating={selectedProduct.rating} />
+                                    </div>
                                 </div>
 
-                                {/* Stock Status */}
-                                <div>
-                                    <h2 className="font-semibold text-lightText dark:text-darkText">Stock:</h2>
-                                    <p className="text-gray-600 dark:text-darkText">{selectedProduct.stockStatus} items available</p>
-                                </div>
-
-                                {/* Customization */}
-                                <div className="sm:col-span-2">
-                                    <h2 className="font-semibold text-lightText dark:text-darkText">Customization:</h2>
-                                    <p className="text-gray-600 dark:text-darkText">{selectedProduct.customization}</p>
+                                {/* Stock */}
+                                <div className="flex items-center gap-4">
+                                    <FaCube className="text-accentColor text-2xl" />
+                                    <div>
+                                        <h3 className="font-semibold text-lightText dark:text-darkText">Stock</h3>
+                                        <p className="text-subtitleText">{selectedProduct.stockStatus} items available</p>
+                                    </div>
                                 </div>
 
                                 {/* Processing Time */}
-                                <div className="sm:col-span-2">
-                                    <h2 className="font-semibold  text-lightText dark:text-darkText">Processing Time:</h2>
-                                    <p className="text-gray-600 dark:text-darkText">{selectedProduct.processingTime}</p>
+                                <div className="flex items-center gap-4 md:col-span-2">
+                                    <FaClock className="text-accentColor text-2xl" />
+                                    <div>
+                                        <h3 className="font-semibold text-lightText dark:text-darkText">Processing Time</h3>
+                                        <p className="text-subtitleText">{selectedProduct.processingTime}</p>
+                                    </div>
+                                </div>
+
+                                {/* Customization */}
+                                <div className="flex items-center gap-4 md:col-span-2">
+                                    <FaUser  className="text-accentColor text-2xl" />
+                                    <div>
+                                        <h3 className="font-semibold text-lightText dark:text-darkText">Customization</h3>
+                                        <p className="text-subtitleText">{selectedProduct.customization}</p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -160,6 +185,7 @@ const ViewAProductDetails = () => {
                     </div>
                 </div>
             </div>
+
             <footer className="bg-footerLightBg dark:bg-footerDarkBg transition-all duration-300">
                 <Footer />
             </footer>

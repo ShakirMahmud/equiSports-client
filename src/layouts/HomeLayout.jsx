@@ -7,6 +7,9 @@ import CategoryBtns from '../components/CategoryBtns';
 import Testimonials from '../components/Testimonials';
 import StoreLocationMap from '../components/StoreLocationMap';
 import { Helmet } from 'react-helmet-async';
+import CustomerAchievements from '../components/CustomerAchievements';
+import OurServices from '../components/OurServices';
+import WhyChooseUs from '../components/WhyChooseUs';
 
 const HomeLayout = () => {
     return (
@@ -25,14 +28,24 @@ const HomeLayout = () => {
                     <Banner />
                 </section>
 
+                
                 {/* Category Buttons Section */}
                 <section className="w-4/5 mx-auto">
                     <CategoryBtns />
+                </section>
+                <section className="w-4/5 mx-auto">
+                    <WhyChooseUs />
+                </section>
+                <section className="w-4/5 mx-auto">
+                    <CustomerAchievements />
                 </section>
 
                 {/* Testimonials Section */}
                 <section className="">
                     <Testimonials />
+                </section>
+                <section className="">
+                    <OurServices />
                 </section>
 
                 {/* Store Location Map Section */}

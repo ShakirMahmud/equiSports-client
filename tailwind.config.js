@@ -10,35 +10,35 @@ export default {
     extend: {
       colors: {
         // Primary Background for Light and Dark Mode
-        lightBg: '#fef7e5', // Light beige for Light Mode
-        darkBg: '#2c3e50', // Dark blue-gray for Dark Mode
+        lightBg: '#f4f7f6', // Soft mint-gray background
+        darkBg: '#1a2634', // Deep navy dark background
 
         // Secondary Backgrounds (Card Backgrounds)
-        lightCard: '#ffffff', // White card background (Light Mode)
-        darkCard: '#34495e', // Darker shade for cards (Dark Mode)
+        lightCard: '#ffffff', // Crisp white card background
+        darkCard: '#273444', // Soft charcoal dark card background
 
         // Text colors
-        lightText: '#2d2d2d', // Dark text color for light mode
-        darkText: '#ecf0f1', // Light off-white text color for dark mode
+        lightText: '#2c3e50', // Rich dark blue-gray text
+        darkText: '#e6e6e6', // Soft light gray text
 
         // Button colors
-        lightBtn: '#88d9e6', // Soft blue button color (Light Mode)
-        darkBtn: '#a0d3f0', // Light blue button color (Dark Mode)
-        lightBtnHover: '#72c1d0', // Hover color for light mode buttons
-        darkBtnHover: '#85c0e0', // Hover color for dark mode buttons
-        darkBtnText: '#1e1e1e', // Dark button text color (Dark Mode)
+        lightBtn: '#4a90e2', // Vibrant blue button
+        darkBtn: '#5bc0de', // Soft cyan button
+        lightBtnHover: '#357abd', // Deeper blue hover
+        darkBtnHover: '#39b3d7', // Lighter cyan hover
+        darkBtnText: '#ffffff', // White text for dark mode buttons
 
         // Accent and Subtitle colors
-        accentColor: '#ff9a8b', // Soothing accent color for both modes
-        subtitleText: '#8e8e8e', // Light opacity color for subtitles
-        priceText: '#ffb84d', // Subtle orange for price text
-        cardBorder: '#3a3a3a', // Dark border for cards in dark mode
+        accentColor: '#f39c12', // Warm orange accent
+        subtitleText: '#7f8c8d', // Soft gray for subtitles
+        priceText: '#e74c3c', // Vibrant red for prices
+        cardBorder: '#bdc3c7', // Light gray border
 
         // Navigation and Footer Backgrounds
-        navLightBg: '#f0f1f5', // Light background for nav in light mode (slightly darker than main bg)
-        navDarkBg: '#253747', // Dark background for nav in dark mode (slightly darker than main bg)
-        footerLightBg: '#f0f1f5', // Light background for footer in light mode
-        footerDarkBg: '#253747', // Dark background for footer in dark mode
+        navLightBg: '#ecf0f1', // Light gray-white
+        navDarkBg: '#2c3e50', // Deep blue-gray
+        footerLightBg: '#f8f9fa', // Very light gray
+        footerDarkBg: '#233240', // Slightly lighter than main dark bg
       },
     },
   },

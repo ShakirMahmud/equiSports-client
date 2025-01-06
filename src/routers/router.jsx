@@ -58,9 +58,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/product/:id',
-        element: <PrivateRoute>
-            <ViewAProductDetails />
-        </PrivateRoute>,
+        element: <ViewAProductDetails />,
         loader: ({ params }) => fetch(`https://equi-sports-server-shakir.vercel.app/products/${params.id}`)
     },
 
