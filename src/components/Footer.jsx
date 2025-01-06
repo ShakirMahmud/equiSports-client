@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <footer className="bg-lightCard dark:bg-darkCard text-lightText dark:text-darkText">
             <div className="container p-6 mx-auto">
-                <div className="lg:flex">
+                <div className="lg:flex justify-between">
                     {/* Brand and Description */}
                     <div className="w-full -mx-6 lg:w-2/5">
                         <div className="px-6">
@@ -65,8 +65,8 @@ const Footer = () => {
 
                     {/* Footer Links */}
                     <div className="mt-6 lg:mt-0 lg:flex-1">
-                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-                            <div>
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 self-end">
+                            <div className='self-end'>
                                 <h3 className="text-lg font-bold uppercase mb-4">Quick Links</h3>
                                 <ul className="space-y-2">
                                     <li>

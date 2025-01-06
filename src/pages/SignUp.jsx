@@ -1,10 +1,13 @@
 import { useContext, useState } from "react";
+import { motion } from "framer-motion";
+import Lottie from "lottie-react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import SignUpAnimation from '../assets/signup-animation.json'; // Adjust the path as needed
 
 const SignUp = () => {
     const [isClicked, setIsClicked] = useState(true);
@@ -16,15 +19,13 @@ const SignUp = () => {
     const sweetAlert = () => {
         Swal.fire({
             title: "Sign-Up Successful!",
-            text: "You have successfully signed up. You will be redirected shortly, or click OK to proceed immediately.",
+            text: "You have successfully signed up.",
             icon: "success",
             confirmButtonText: "OK",
             timer: 3000,
             timerProgressBar: true,
-        }).then((result) => {
-            if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
-                navigate("/");
-            }
+        }).then(() => {
+            navigate("/");
         });
     };
 
@@ -95,9 +96,12 @@ const SignUp = () => {
         signInWithGoogle()
             .then((res) => {
                 setUser(res.user);
-                const newUser = { name: res.user.displayName, photo: res.user.photoURL, email: res.user.email };
+                const newUser = {
+                    name: res.user.displayName,
+                    photo: res.user.photoURL,
+                    email: res.user.email
+                };
                 postToDB(newUser);
-
                 sweetAlert();
             })
             .catch((err) => {
@@ -111,88 +115,138 @@ const SignUp = () => {
             <Helmet>
                 <title>Sign Up - EquiSports</title>
             </Helmet>
-            <div className="card bg-lightCard dark:bg-darkCard w-full max-w-xl mx-auto p-6 rounded-xl shadow-2xl">
-                <form onSubmit={handleSignUp} className="card-body space-y-6">
-                    <h2 className="text-2xl font-bold text-center text-lightText dark:text-darkText">
+
+            <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                {/* Left Side: Animated Illustration */}
+                <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="hidden lg:flex justify-center items-center"
+                >
+                    <Lottie
+                        animationData={SignUpAnimation}
+                        loop={true}
+                        className="max-w-full h-auto w-full"
+                        style={{ maxWidth: '500px' }}
+                    />
+                </motion.div>
+
+                {/* Right Side: Signup Form */}
+                <motion.div
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-lightCard dark:bg-darkCard p-8 rounded-2xl shadow-xl"
+                >
+                    <h2 className="text-3xl font-bold text-center text-lightText dark:text-darkText mb-6">
                         Create Your Account
                     </h2>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-lightText dark:text-darkText">Name</span>
-                        </label>
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Your Name"
-                            className="input input-bordered w-full rounded-lg bg-lightBg dark:bg-darkBg text-lightText dark:text-darkText border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-accentColor"
-                            required
-                        />
-                    </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-lightText dark:text-darkText">Photo URL</span>
-                        </label>
-                        <input
-                            type="text"
-                            name="photo"
-                            placeholder="Your Photo URL"
-                            className="input input-bordered w-full rounded-lg bg-lightBg dark:bg-darkBg text-lightText dark:text-darkText border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-accentColor"
-                            required
-                        />
-                    </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-lightText dark:text-darkText">Email</span>
-                        </label>
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Your Email"
-                            className="input input-bordered w-full rounded-lg bg-lightBg dark:bg-darkBg text-lightText dark:text-darkText border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-accentColor"
-                            required
-                        />
-                    </div>
-                    <div className="form-control relative">
-                        <label className="label">
-                            <span className="label-text text-lightText dark:text-darkText">Password</span>
-                        </label>
-                        <input
-                            type={isClicked ? "password" : "text"}
-                            name="password"
-                            placeholder="Your Password"
-                            className="input input-bordered w-full rounded-lg bg-lightBg dark:bg-darkBg text-lightText dark:text-darkText border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-accentColor"
-                            required
-                        />
+
+                    <form onSubmit={handleSignUp} className="space-y-6">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-lightText dark:text-darkText">Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Your Name"
+                                className="input input-bordered w-full rounded-lg bg-lightBg dark:bg-darkBg text-lightText dark:text-darkText border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-accentColor"
+                                required
+                            />
+                        </div>
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-lightText dark:text-darkText">Photo URL</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="photo"
+                                placeholder="Your Photo URL"
+                                className="input input-bordered w-full rounded-lg bg-lightBg dark:bg-darkBg text-lightText dark:text-darkText border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-accentColor"
+                                required
+                            />
+                        </div>
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text text-lightText dark:text-darkText">Email</span>
+                            </label>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Your Email"
+                                className="input input-bordered w-full rounded-lg bg-lightBg dark:bg-darkBg text-lightText dark:text-darkText border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-accentColor"
+                                required
+                            />
+                        </div>
+
+                        <div className="form-control relative">
+                            <label className="label">
+                                <span className="label-text text-lightText dark:text-darkText">Password</span>
+                            </label>
+                            <input
+                                type={isClicked ? "password" : "text"}
+                                name="password"
+                                placeholder="Your Password"
+                                className="input input-bordered w-full rounded-lg bg-lightBg dark:bg-darkBg text-lightText dark:text-darkText border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-accentColor"
+                                required
+                                // Password validation attributes
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                title="Must contain at least one number, one uppercase and lowercase letter, and be at least 6 characters long"
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setIsClicked(!isClicked)}
+                                className="absolute right-3 top-3/4 transform -translate-y-1/2 text-2xl text-lightText dark:text-darkText"
+                            >
+                                {isClicked ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                            </button>
+                        </div>
+
+                        {/* Error Message */}
+                        {error && (
+                            <div className="text-center text-red-500 text-sm">
+                                <p>{error}</p>
+                            </div>
+                        )}
+
+                        {/* Submit Button */}
                         <button
-                            type="button"
-                            onClick={() => setIsClicked(!isClicked)}
-                            className="absolute right-5 top-[3rem] text-2xl text-lightText dark:text-darkText"
+                            type="submit"
+                            className="w-full btn bg-lightBtn dark:bg-darkBtn text-white rounded-lg hover:bg-lightBtnHover dark:hover:bg-darkBtnHover transition-all"
                         >
-                            {isClicked ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-                        </button>
-                    </div>
-                    {error && <p className="text-center text-red-600">{error}</p>}
-                    <div className="form-control mt-6">
-                        <button type="submit" className="btn bg-lightBtn dark:bg-darkBtn text-lightText  font-bold text-lg hover:bg-lightBtnHover dark:hover:bg-darkBtnHover rounded-xl">
                             Sign Up
                         </button>
+                    </form>
+
+                    {/* Login Link */}
+                    <div className="text-center mt-6">
+                        <p className="text-lightText dark:text-darkText">
+                            Already have an account?{" "}
+                            <Link
+                                to="/auth/signIn"
+                                className="text-accentColor hover:underline"
+                            >
+                                Log In
+                            </Link>
+                        </p>
                     </div>
-                </form>
-                <div className="text-center mt-6 text-lightText dark:text-darkText">
-                    <span>Already have an account?</span>{" "}
-                    <Link to="/auth/signIn" className="link link-hover text-accentColor">
-                        Log In
-                    </Link>
-                </div>
-                <div className="w-full flex justify-center py-6">
+
+                    {/* Divider */}
+                    <div className="divider text-subtitleText">OR</div>
+
+                    {/* Google Sign Up */}
                     <button
                         onClick={handleSignUpWithGoogle}
-                        className="flex items-center gap-2 px-6 py-3 bg-lightCard dark:bg-darkCard text-lightText dark:text-darkText rounded-lg shadow hover:shadow-md transition-all duration-300 border border-cardBorder"
+                        className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white dark:bg-darkBg text-gray-600 dark:text-gray-200 rounded-lg shadow border border-gray-300 dark:border-gray-700 hover:shadow-md transition-all"
                     >
                         <FcGoogle size={24} />
-                        <span className="text-lg font-medium">Sign Up with Google</span>
+                        <span>Sign Up with Google</span>
                     </button>
-                </div>
+                </motion.div>
             </div>
         </div>
     );

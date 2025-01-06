@@ -80,7 +80,7 @@ const CategoryBtns = () => {
     const productsToDisplay = selectedCategory.length ? selectedCategory : limitedProducts;
 
     return (
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-16">
             {/* Section Header */}
             <div className="text-center mb-12 space-y-4">
                 <div className="flex justify-center items-center gap-3">
@@ -159,7 +159,7 @@ const CategoryBtns = () => {
                     <Loading /> 
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {productsToDisplay.map((product) => (
                         <div 
                             key={product._id} 
@@ -167,7 +167,7 @@ const CategoryBtns = () => {
                         >
                             {/* Product Image */}
                             <div 
-                                className="h-64 bg-contain bg-no-repeat bg-center"
+                                className="h-44 bg-contain bg-no-repeat bg-center"
                                 style={{ backgroundImage: `url(${product.image})` }}
                             />
 

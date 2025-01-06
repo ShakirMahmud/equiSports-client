@@ -33,7 +33,7 @@ const HomeLayout = () => {
                 <section className="w-4/5 mx-auto">
                     <CategoryBtns />
                 </section>
-                <section className="w-4/5 mx-auto">
+                <section className="">
                     <WhyChooseUs />
                 </section>
                 <section className="w-4/5 mx-auto">

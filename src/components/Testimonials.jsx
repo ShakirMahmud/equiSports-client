@@ -62,14 +62,14 @@ const Testimonials = () => {
   ];
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 py-16 ">
+    <div className="bg-white dark:bg-darkCard py-16 ">
       {/* Section Title */}
       <h2 className="text-center text-gray-900 dark:text-gray-100 text-4xl font-bold mb-12">
         What Athletes Say About Us
       </h2>
 
       {/* Container */}
-      <div className="flex flex-wrap items-center justify-center dark:bg-gray-700 rounded-lg w-11/12 mx-auto">
+      <div className="flex flex-wrap items-center justify-center dark:bg-darkBg rounded-lg w-11/12 mx-auto">
         {/* Left Section: Lottie Animation */}
         <div className="w-full lg:w-1/3 mb-8 lg:mb-0">
           <Player
@@ -81,7 +81,7 @@ const Testimonials = () => {
         </div>
 
         {/* Right Section: Testimonials Slider */}
-        <div className="w-full lg:w-2/3">
+        <div className="w-full  lg:w-2/3">
           <Swiper
             spaceBetween={30}
             centeredSlides={true}
@@ -95,7 +95,7 @@ const Testimonials = () => {
           >
             {feedbacks.map((item, index) => (
               <SwiperSlide key={index}>
-                <div className="flex flex-col items-center text-center bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md">
+                <div className="flex flex-col items-center text-center bg-lightBg dark:bg-darkBg  p-8 rounded-lg shadow-md">
                   {/* Testimonial Image */}
                   <img
                     className="w-24 h-24 rounded-full object-cover border-4 border-gray-300 dark:border-gray-600 mb-4"

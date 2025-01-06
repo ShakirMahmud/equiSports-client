@@ -80,7 +80,7 @@ const Banner = () => {
             </div>
 
             {/* Product Slider */}
-            <div className="py-12 px-4 md:px-8 relative">
+            <div className="pt-12 px-4 md:px-8 relative">
                 <div className="container mx-auto">
                     <Slider {...settings}>
                         {products.map((product, index) => (

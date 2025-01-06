@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { auth } from "../firebase/firebase.config";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
@@ -39,6 +39,8 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
+    const contactRef = useRef(null);
+
     const authInfo = {
         loading,
         createNewUser,
@@ -48,6 +50,7 @@ const AuthProvider = ({ children }) => {
         setUser,
         userSignIn,
         logOut,
+        contactRef
     }
 
     // observer

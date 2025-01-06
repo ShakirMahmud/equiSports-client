@@ -41,7 +41,7 @@ const WhyChooseUs = () => {
     ];
 
     return (
-        <div className="py-16 bg-lightBg dark:bg-darkBg">
+        <div className="py-16 bg-white dark:bg-darkCard">
             <div className="container mx-auto px-4">
                 {/* Section Header */}
                 <div className="text-center mb-16">
@@ -101,7 +101,7 @@ const WhyChooseUs = () => {
                 </div>
 
                 {/* Call to Action */}
-                <div className="text-center mt-16">
+                <div className="text-center mt-12">
                     <button 
                         onClick={() => navigate('/allSportsEquipment')}
                         className="

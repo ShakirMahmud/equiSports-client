@@ -4,13 +4,28 @@ import { BiSun } from "react-icons/bi";
 import { Tooltip as ReactTooltip, Tooltip } from "react-tooltip";
 import { BiLogIn } from "react-icons/bi";
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { ThemeContext } from "../provider/ThemeProvider";
 
 const NavBar = () => {
-    const { user, logOut, loading } = useContext(AuthContext);
+    const { user, logOut, loading, contactRef } = useContext(AuthContext);
     const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const scrollToSection = (ref) => {
+        if (location.pathname !== '/') {
+            navigate('/');
+            setTimeout(() => {
+                if (ref?.current) {
+                    ref.current.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 500);
+        } else if (ref?.current) {
+            ref.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     const navLinkStyle = ({ isActive }) => 
         `transition-all duration-300 ease-in-out ${
@@ -43,6 +58,11 @@ const NavBar = () => {
                     </li>
                 </>
             )}
+            <li>
+                <button onClick={() => scrollToSection(contactRef)} className={navLinkStyle}>
+                    Contact
+                </button>
+            </li>
         </div>
     );
 
