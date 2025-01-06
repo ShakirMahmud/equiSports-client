@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../pages/Loading';
+import { Pagination } from 'swiper/modules';
 
 const Banner = () => {
     const [products, setProducts] = useState([]);
@@ -32,6 +33,8 @@ const Banner = () => {
         autoplay: true,
         autoplaySpeed: 3000,
         pauseOnHover: true,
+        Pagination: false,
+        
         beforeChange: (current, next) => setActiveSlide(next),
         responsive: [
             {
