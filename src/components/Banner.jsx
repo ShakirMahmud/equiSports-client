@@ -34,6 +34,7 @@ const Banner = () => {
         autoplaySpeed: 3000,
         pauseOnHover: true,
         Pagination: false,
+        arrows: false,
         
         beforeChange: (current, next) => setActiveSlide(next),
         responsive: [
