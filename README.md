@@ -1,7 +1,3 @@
-Here’s an enhanced version of your **EquiSports** README with additional sections and details to make it more comprehensive:
-
----
-
 # **EquiSports**
 
 EquiSports is an online sports equipment store offering a diverse selection of gear, apparel, and accessories for various sports disciplines. Designed with a responsive and user-friendly interface, the platform enables customers to browse, purchase, and review products with ease. It also includes advanced features for user authentication and product management, catering to both users and administrators.
